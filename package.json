@@ -1,0 +1,19 @@
+{
+    "name": "mimix-mvp",
+    "version": "1.0.0",
+    "description": "Mimix MVP",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron --no-sandbox ."
+    },
+    "repository": "https://github.com/themimixcompany/mvp",
+    "keywords": [
+        "Mimix",
+        "MVP"
+    ],
+    "author": "Mimix",
+    "license": "Blue Oak License",
+    "devDependencies": {
+        "electron": "^7.1.1"
+    }
+}
