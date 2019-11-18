@@ -5,7 +5,7 @@
     "description": "Mimix MVP",
     "main": "main.js",
     "scripts": {
-        "engine": "./engine/engine",
+        "engine": "./engine/engine_linux",
         "wwwserver": "ws -d app -s index.html",
         "gui": "electron --no-sandbox .",
         "start": "run-p engine wwwserver gui",
