@@ -4,7 +4,10 @@
     "description": "Mimix MVP",
     "main": "main.js",
     "scripts": {
-        "start": "electron --no-sandbox ."
+        "wsserver": "sbcl --noinform --eval \"(ql:quickload :engine)\" --eval \"(engine:start-websocket-server)\"",
+        "wwwserver": "ws -d app -s index.html",
+        "gui": "electron --no-sandbox .",
+        "start": "npm-run-all -p wsserver wwwserver gui"
     },
     "repository": "https://github.com/themimixcompany/mvp",
     "keywords": [
@@ -14,6 +17,9 @@
     "author": "Mimix",
     "license": "Blue Oak License",
     "devDependencies": {
-        "electron": "^7.1.1"
-    }
+        "electron": "^7.1.1",
+        "local-web-server": "^3.0.7",
+        "npm-run-all": "^4.1.5"
+    },
+    "dependencies": {}
 }
