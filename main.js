@@ -2,6 +2,16 @@ const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const child = require('child_process').execFile;
 const fs = require('fs');
+const express = require('express');
+
+const appexpress = express();
+const port = process.env.PORT || 8000;
+
+appexpress.use(express.static('app'));
+
+appexpress.listen(port, () => {
+  console.log('listening on %d', port);
+});
 
 var dirPrefix = "";
 
@@ -11,19 +21,12 @@ if (fs.existsSync("./resources/app")) {
     dirPrefix="./";
 }
 
-const enginePath = `${dirPrefix}engine/engine_linux`;
-const engineArgs = [];
+function loadEngine () {
+    var enginePath = `${dirPrefix}engine/engine_linux`;
+    var engineArgs = [];
 
-const webServerPath = `${dirPrefix}node_modules/local-web-server/bin/cli.js`;
-const webServerArgs = ["-d", `${dirPrefix}app`, "-s", "index.html"];
-
-function loadServers () {
+    // Note: check for existing running engines, first
     child(enginePath, engineArgs, (err, data) => {
-        console.log(err);
-        console.log(data.toString());
-    });
-
-    child(webServerPath, webServerArgs, (err, data) => {
         console.log(err);
         console.log(data.toString());
     });
@@ -46,7 +49,7 @@ function createWindow () {
 }
 
 function runApp () {
-    loadServers();
+    loadEngine();
     createWindow();
 }
 
