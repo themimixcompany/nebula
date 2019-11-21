@@ -3,29 +3,27 @@ const path = require('path');
 const child = require('child_process').execFile;
 const fs = require('fs');
 const express = require('express');
-
 const appexpress = express();
 const port = process.env.PORT || 8000;
 
-appexpress.use(express.static('app'));
+var dirPrefix = "";
 
+if (fs.existsSync(path.resolve(__dirname, "resources/app"))) {
+    dirPrefix = path.resolve(__dirname, "resources/app");
+} else {
+    dirPrefix = path.resolve(__dirname);
+}
+
+appexpress.use(express.static(`${dirPrefix}/app`));
 appexpress.listen(port, () => {
   console.log('listening on %d', port);
 });
 
-var dirPrefix = "";
-
-if (fs.existsSync("./resources/app")) {
-    dirPrefix="./resources/app/";
-} else {
-    dirPrefix="./";
-}
-
 function loadEngine () {
-    var enginePath = `${dirPrefix}engine/engine_linux`;
+    // Note: check for existing running engines, first
+    var enginePath = `${dirPrefix}/engine/engine_linux`;
     var engineArgs = [];
 
-    // Note: check for existing running engines, first
     child(enginePath, engineArgs, (err, data) => {
         console.log(err);
         console.log(data.toString());
