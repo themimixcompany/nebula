@@ -13,7 +13,8 @@
     },
     "keywords": [],
     "author": "David Bethune",
-    "license": "",
+    "license": "BlueOak-1.0.0",
+    "repository": "https://github.com/themimixcompany/mvp",
     "config": {
         "forge": {
             "packagerConfig": {
@@ -55,10 +56,10 @@
     },
     "devDependencies": {
         "@electron-forge/cli": "6.0.0-beta.45",
-        "@electron-forge/maker-deb": "6.0.0-beta.45",
-        "@electron-forge/maker-dmg": "6.0.0-beta.45",
-        "@electron-forge/maker-squirrel": "6.0.0-beta.45",
         "@electron-forge/maker-zip": "6.0.0-beta.45",
+        "@electron-forge/maker-deb": "6.0.0-beta.45",
+        "@electron-forge/maker-squirrel": "6.0.0-beta.45",
+        "@electron-forge/maker-dmg": "6.0.0-beta.45",
         "electron": "7.1.1",
         "express": "^4.17.1"
     }

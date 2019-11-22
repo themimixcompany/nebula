@@ -21,7 +21,7 @@ appexpress.listen(port, () => {
 
 function loadEngine () {
     // Note: check for existing running engines, first
-    var enginePath = `${dirPrefix}/engine/engine_linux`;
+    var enginePath = `${dirPrefix}/engine/engine_${process.platform}`;
     var engineArgs = [];
 
     child(enginePath, engineArgs, (err, data) => {
