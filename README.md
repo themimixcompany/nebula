@@ -10,14 +10,7 @@ This section briefly describes the main components of the MVP. This section pres
 
 ### Engine
 
-The engine is implemented using Common Lisp, with [SBCL](http://sbcl.org) as the primary implementation. Currently, it contains the following modules:
-
-- websocket.lisp
-- build.lisp
-
-The websocket module is responsible for opening a two-way commmunication stream between itself and the outside world. In our case it creates a socket between the engine and the Electron application.
-
-The build module is used for producing standalone executables that the Electron component will spawn.
+The engine is implemented using Common Lisp, with [SBCL](http://sbcl.org) as the primary implementation. Currently, it contains the modules websocket and build. The websocket module is responsible for opening a two-way commmunication stream between itself and the outside world. In our case it creates a socket between the engine and the Electron application. The build module is used for producing standalone executables that the Electron component will spawn.
 
 
 ### Viewer
@@ -34,11 +27,15 @@ Building
 
 On Ubuntu, the Lisp compiler SBCL must first be installed with:
 
-    sudo apt-get install -y sbcl
+```bash
+sudo apt-get install -y sbcl
+```
 
 The minimum required version must be 1.4.5. To check if you meet this requirement, run:
 
-    sbcl --version
+```bash
+sbcl --version
+```
 
 Next, [Quicklisp](https://quicklisp.org) and the other dependencies must be installed:
 
@@ -70,24 +67,34 @@ This creates an Engine executable in the subdirectory `engine/` where the comman
 
 To build the viewer, you must first install Node.js. On Ubuntu, run:
 
-    sudo apt-get install -y nodejs npm
+```bash
+sudo apt-get install -y nodejs npm
+```
 
 The minimum required versions for nodejs and npm are `8.10.0` and `3.5.2`, respectively. To check if you meet these requirements, run:
 
-    node --version
-    npm --version
+```bash
+node --version
+npm --version
+```
 
 Inside the mvp directory, run the following command to install the required dependencise:
 
-    npm install
+```bash
+npm install
+```
 
 When all the dependencies have been installed, check to see that the application can indeed run:
 
-    npm start
+```bash
+npm start
+```
 
 To create a bundled application, run:
 
-    npm run package
+```bash
+npm run package
+```
 
 This command creates an `out/mvp-linux-x64` subdirectory that contains the application and its local resources and dependencies.
 
@@ -95,19 +102,26 @@ This command creates an `out/mvp-linux-x64` subdirectory that contains the appli
 Deployment
 ----------
 
+
 ### Linux
 
 To be able to run the Linux binaries, a set of required runtime dependencies must first be installed. On Ubuntu, you may install them with:
 
-    sudo apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2
+```bash
+sudo apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2
+```
 
 To run the app itself, navigate to the `out/mvp-linux-x64` subdirectory mentioned in the last section, then run the `mvp` binary:
 
-    cd out/mvp-linux-x64
-    ./mvp
+```bash
+cd out/mvp-linux-x64
+./mvp
+```
 
 
 ### Windows
+
+TODO
 
 
 Structure
@@ -190,9 +204,11 @@ The `makers` parameter is used when running the command `npm run make`, which bu
 
 Testing the [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application) during development is done with [local-web-server](https://github.com/lwsjs/local-web-server/). To use it, install lws as a global dependency and run it with an index.html file:
 
-    npm i -g local-web-server
-    cd app
-    ws -s index.html
+```bash
+npm i -g local-web-server
+cd app
+ws -s index.html
+```
 
 However, due to the fact that controlling the spawning of child processes via `package.json` is not amenable to Electron Forge, creating child processes are done instead inside `main.js` using [Express](https://expressjs.com/). The way it is used with the MVP is as such:
 
