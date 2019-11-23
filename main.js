@@ -1,4 +1,5 @@
 const {app, BrowserWindow} = require('electron');
+
 const path = require('path');
 const child = require('child_process').execFile;
 const fs = require('fs');
@@ -14,10 +15,12 @@ if (fs.existsSync(path.resolve(__dirname, "resources/app"))) {
     dirPrefix = path.resolve(__dirname);
 }
 
-appexpress.use(express.static(`${dirPrefix}/app`));
-appexpress.listen(port, () => {
-  console.log('listening on %d', port);
-});
+function loadExpress () {
+    appexpress.use(express.static(`${dirPrefix}/app`));
+    appexpress.listen(port, () => {
+        console.log('listening on %d', port);
+    });
+}
 
 function loadEngine () {
     // Note: check for existing running engines, first
@@ -36,7 +39,7 @@ let mainWindow;
 function createWindow () {
     mainWindow = new BrowserWindow({
         width: 800,
-        height: 600,
+        height: 600
     });
 
     mainWindow.loadURL("http://localhost:8000");
@@ -48,16 +51,21 @@ function createWindow () {
 }
 
 function runApp () {
+    loadExpress();
     loadEngine();
     createWindow();
 }
 
-app.on('ready', runApp);
+function main () {
+    app.on('ready', runApp);
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
-});
+    app.on('window-all-closed', () => {
+        if (process.platform !== 'darwin') app.quit();
+    });
 
-app.on('activate', () => {
-    if (mainWindow === null) createWindow();
-});
+    app.on('activate', () => {
+        if (mainWindow === null) createWindow();
+    });
+}
+
+main();
