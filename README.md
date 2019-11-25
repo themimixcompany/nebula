@@ -25,10 +25,17 @@ Building
 
 ### Engine
 
-On Ubuntu, the Lisp compiler SBCL must first be installed with:
+### Overview
+
+This section contains the instrutions for building the Engine on Linux and Windows systems. The minimum required software are [SBCL](http://sbcl.org) and [Git](https://git-scm.com).
+
+
+#### Linux
+
+On Ubuntu systems install SBCL with:
 
 ```bash
-sudo apt-get install -y sbcl
+sudo apt-get install -y sbcl git curl
 ```
 
 The minimum required version must be 1.4.5. To check if you meet this requirement, run:
@@ -40,7 +47,7 @@ sbcl --version
 Next, [Quicklisp](https://quicklisp.org) and the other dependencies must be installed:
 
 ```bash
-mkdir -p ~/bin ~/common-lisp
+mkdir -p ~/common-lisp
 git clone https://github.com/fare/asdf ~/common-lisp/asdf
 git clone https://github.com/ebzzry/mof ~/common-lisp/mof
 curl -O https://beta.quicklisp.org/quicklisp.lisp
@@ -51,21 +58,86 @@ Next, clone the sources of the Engine:
 
 ```bash
 cd ~/common-lisp
-git clone https://github.com/themimixcompany/mvp
+git clone https://github.com/themimixcompany/engine
 ```
 
 Next, build the Engine executable:
 
 ```bash
+cd mvp
 sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
 ```
 
 This creates an Engine executable in the subdirectory `engine/` where the command was run.
 
 
+### Windows
+
+On Windows 7 and up, download and install [SBCL](http://sbcl.org/platform-table.html). The latest version of SBCL for Windows at the time of writing is `1.4.14`.
+
+To verify that you have succesfully install SBCL, run the following command in the Command Prompt:
+
+```dos
+sbcl --version
+```
+
+Next, [Quicklisp](https://quicklisp.org) and the other dependencies must be installed.
+
+First, download Quicklisp from [https://beta.quicklisp.org/quicklisp.lisp](https://beta.quicklisp.org/quicklisp.lisp). Then, move `quicklisp.lisp` to `%HOMEPATH%`. In the Command Prompt go to `%HOMEDIR%`:
+
+```dos
+cd %HOMEDIR%
+```
+
+Then load `quicklisp.lisp` with the installation functions:
+
+```dos
+sbcl --load quicklisp.lisp --eval  '(quicklisp-quickstart:install)' --eval '(let ((ql-util::*do-not-prompt* t)) (ql:add-to-init-file) (ql:quickload :cl-launch) (sb-ext:quit))'
+```
+
+Next, download and install [Git](https://git-scm.com/download/win). to verify that you have succesfully installed Git, run the following command in the Command Prompt:
+
+```dos
+git --version
+```
+
+Now that we have Git installed, we’ll download the dependencies:
+
+```dos
+cd %HOMEDIR%
+md common-lisp
+cd common-lisp
+git clone https://github.com/fare/asdf
+git clone https://github.com/ebzzry/mof
+```
+
+Before we continue, we need to install OpenSSL for Windows. Head over to the [Win32/Win64 OpenSSL site](http://slproweb.com/products/Win32OpenSSL.html) then download and install the file [Win64 OpenSSL v1.1.1d Light](http://slproweb.com/download/Win64OpenSSL_Light-1_1_1d.exe). Restart your machine after installing it.
+
+Next we go back to the command prompt, to fetch the engine:
+
+```dos
+cd %HOMEDIR%\common-lisp
+git clone https://github.com/themimixcompany/engine
+```
+
+Next, build the Engine executable:
+
+```dos
+cd mvp
+sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
+```
+
+This creates an Engine executable in the subdirectory `engine/` where the command was run.
+
+
+
 ### Viewer
 
-To build the viewer, you must first install Node.js. On Ubuntu, run:
+This section describes the procedures for building the Viewer on Linux and windows systems.
+
+#### Linux
+
+To build the viewer on Linux systems, you must first install Node.js. On Ubuntu, run:
 
 ```bash
 sudo apt-get install -y nodejs npm
@@ -99,6 +171,11 @@ npm run package
 ```
 
 This command creates an `out/mvp-linux-x64` subdirectory that contains the application and its local resources and dependencies.
+
+
+#### Windows
+
+TODO
 
 
 Deployment
