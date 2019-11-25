@@ -22,10 +22,21 @@ function loadExpress () {
   });
 }
 
+function getPlatformSuffix () {
+  if (process.platform === 'linux'){
+    return "_linux";
+  } else if (process.platform === 'win32'){
+    return "_windows.exe";
+  } else if (process.platform === 'darwin') {
+    return "_darwin";
+  } else {
+    console.log(`This platform ${process.platform} is unsupported.`);
+  }
+}
+
 function loadEngine () {
-  // Note: check for existing running engines, first
-  // Note: check port usage
-  var enginePath = `${dirPrefix}/engine/engine_${process.platform}`;
+  var platformSuffix = getPlatformSuffix();
+  var enginePath = `${dirPrefix}/engine/engine${platformSuffix}`;
   var engineArgs = [];
 
   child(enginePath, engineArgs, (err, data) => {
