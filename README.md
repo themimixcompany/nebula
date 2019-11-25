@@ -84,9 +84,11 @@ Inside the mvp directory, run the following command to install the required depe
 npm install
 ```
 
-When all the dependencies have been installed, check to see that the application can indeed run:
+When all the dependencies have been installed, check to see that the application
+can indeed run, install electron-forge globally, then run the start script:
 
 ```bash
+npm i -g electron-forge
 npm start
 ```
 
@@ -108,7 +110,7 @@ Deployment
 To be able to run the Linux binaries, a set of required runtime dependencies must first be installed. On Ubuntu, you may install them with:
 
 ```bash
-sudo apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2
+sudo apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2 libssl1.1
 ```
 
 To run the app itself, navigate to the `out/mvp-linux-x64` subdirectory mentioned in the last section, then run the `mvp` binary:
@@ -150,11 +152,11 @@ To build an Electron app that uses Electron Forge, it must conform to the method
 
 ```json
 "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+  "start": "electron-forge start",
+  "package": "electron-forge package",
+  "make": "electron-forge make",
+  "publish": "electron-forge publish",
+  "lint": "echo \"No linting configured\""
 }
 ```
 
@@ -164,36 +166,36 @@ The values that the MVP uses look similar to the following:
 
 ```json
 "config": {
-    "forge": {
-        "packagerConfig": {
-            "name": "mvp",
-            "dir": ".",
-            "overwrite": "true"
-        },
-        "makers": [
-            {
-                "name": "@electron-forge/maker-zip",
-                "platforms": [
-                    "darwin",
-                    "linux",
-                    "windows"
-                ]
-            },
-            {
-                "name": "@electron-forge/maker-deb",
-                "config": {
-                    "maintainer": "David Bethune",
-                    "homepage": "https://mimix.io"
-                }
-            },
-            {
-                "name": "@electron-forge/maker-squirrel",
-                "config": {
-                    "name": "mvp"
-                }
-            },
+  "forge": {
+    "packagerConfig": {
+      "name": "mvp",
+      "dir": ".",
+      "overwrite": "true"
+    },
+    "makers": [
+      {
+        "name": "@electron-forge/maker-zip",
+        "platforms": [
+          "darwin",
+          "linux",
+          "windows"
         ]
-    }
+      },
+      {
+        "name": "@electron-forge/maker-deb",
+        "config": {
+          "maintainer": "David Bethune",
+          "homepage": "https://mimix.io"
+        }
+      },
+      {
+        "name": "@electron-forge/maker-squirrel",
+        "config": {
+          "name": "mvp"
+        }
+      },
+    ]
+  }
 }
 ```
 

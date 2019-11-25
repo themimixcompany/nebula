@@ -1,66 +1,66 @@
 {
-    "name": "mvp",
-    "productName": "Mimix MVP",
-    "version": "1.0.0",
-    "description": "Mimix MVP",
-    "main": "main.js",
-    "scripts": {
-        "start": "electron-forge start",
-        "package": "electron-forge package",
-        "make": "electron-forge make",
-        "publish": "electron-forge publish",
-        "lint": "echo \"No linting configured\""
-    },
-    "keywords": [],
-    "author": "David Bethune",
-    "license": "BlueOak-1.0.0",
-    "repository": "https://github.com/themimixcompany/mvp",
-    "config": {
-        "forge": {
-            "packagerConfig": {
-                "name": "mvp",
-                "dir": ".",
-                "overwrite": "true"
-            },
-            "makers": [
-                {
-                    "name": "@electron-forge/maker-zip",
-                    "platforms": [
-                        "linux",
-                        "win32",
-                        "darwin"
-                    ]
-                },
-                {
-                    "name": "@electron-forge/maker-deb",
-                    "config": {
-                        "maintainer": "David Bethune",
-                        "homepage": "https://mimix.io"
-                    }
-                },
-                {
-                    "name": "@electron-forge/maker-squirrel",
-                    "config": {
-                        "name": "mvp"
-                    }
-                },
-                {
-                    "name": "@electron-forge/maker-dmg"
-                }
-            ]
+  "name": "mvp",
+  "productName": "Mimix MVP",
+  "version": "1.0.0",
+  "description": "Mimix MVP",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "keywords": [],
+  "author": "David Bethune",
+  "license": "BlueOak-1.0.0",
+  "repository": "https://github.com/themimixcompany/mvp",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "mvp",
+        "dir": ".",
+        "overwrite": "true"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "linux",
+            "win32",
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {
+            "maintainer": "David Bethune",
+            "homepage": "https://mimix.io"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "mvp"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg"
         }
-    },
-    "dependencies": {
-        "electron-squirrel-startup": "^1.0.0",
-        "express": "^4.17.1"
-    },
-    "devDependencies": {
-        "@electron-forge/cli": "6.0.0-beta.45",
-        "@electron-forge/maker-zip": "6.0.0-beta.45",
-        "@electron-forge/maker-deb": "6.0.0-beta.45",
-        "@electron-forge/maker-squirrel": "6.0.0-beta.45",
-        "@electron-forge/maker-dmg": "6.0.0-beta.45",
-        "electron": "7.1.1",
-        "express": "^4.17.1"
+      ]
     }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.45",
+    "@electron-forge/maker-zip": "6.0.0-beta.45",
+    "@electron-forge/maker-deb": "6.0.0-beta.45",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.45",
+    "@electron-forge/maker-dmg": "6.0.0-beta.45",
+    "electron": "7.1.1",
+    "express": "^4.17.1"
+  }
 }
