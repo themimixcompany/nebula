@@ -1,5 +1,5 @@
 node_modules/
-engine/
 out/
-app/
+src/engine
+src/app
 npm-debug.log

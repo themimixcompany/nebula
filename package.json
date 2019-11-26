@@ -1,20 +1,20 @@
 {
-  "name": "mvp",
-  "productName": "Mimix MVP",
+  "name": "mvp-app",
+  "productName": "mvp",
   "version": "1.0.0",
   "description": "Mimix MVP",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "electron .",
+    "forge-start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
   "keywords": [],
-  "author": "David Bethune",
-  "license": "BlueOak-1.0.0",
-  "repository": "https://github.com/themimixcompany/mvp",
+  "author": "Mimix",
+  "license": "",
   "config": {
     "forge": {
       "packagerConfig": {
@@ -51,16 +51,19 @@
     }
   },
   "dependencies": {
+    "electron-compile": "^6.4.4",
     "electron-squirrel-startup": "^1.0.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.45",
-    "@electron-forge/maker-zip": "6.0.0-beta.45",
     "@electron-forge/maker-deb": "6.0.0-beta.45",
-    "@electron-forge/maker-squirrel": "6.0.0-beta.45",
     "@electron-forge/maker-dmg": "6.0.0-beta.45",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.45",
+    "@electron-forge/maker-zip": "6.0.0-beta.45",
     "electron": "7.1.1",
+    "electron-compilers": "^5.9.0",
+    "electron-prebuilt-compile": "latest",
     "express": "^4.17.1"
   }
 }
