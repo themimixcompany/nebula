@@ -6,13 +6,16 @@ const fs = require('fs');
 const express = require('express');
 const appexpress = express();
 const port = process.env.PORT || 8000;
+const portscanner = require('portscanner');
 
 var dirPrefix = "";
 
-if (fs.existsSync(path.resolve(__dirname, "resources/app"))) {
-  dirPrefix = path.resolve(__dirname, "resources/app");
-} else {
-  dirPrefix = path.resolve(__dirname);
+function setDirPrefix () {
+  if (fs.existsSync(path.resolve(__dirname, "resources/app"))) {
+    dirPrefix = path.resolve(__dirname, "resources/app");
+  } else {
+    dirPrefix = path.resolve(__dirname);
+  }
 }
 
 function loadExpress () {
@@ -39,9 +42,15 @@ function loadEngine () {
   var enginePath = `${dirPrefix}/engine/engine${platformSuffix}`;
   var engineArgs = [];
 
-  child(enginePath, engineArgs, (err, data) => {
-    console.log(err);
-    console.log(data.toString());
+  portscanner.checkPortStatus(9797, '127.0.0.1', (error, status) => {
+    if (status == 'closed') {
+        child(enginePath, engineArgs, (err, data) => {
+          console.log(err);
+          console.log(data.toString());
+        });
+    } else {
+      console.log(`port ${port} is not available`);
+    }
   });
 }
 
@@ -62,6 +71,7 @@ function createWindow () {
 }
 
 function runApp () {
+  setDirPrefix();
   loadExpress();
   loadEngine();
   createWindow();
