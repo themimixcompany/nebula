@@ -1,7 +1,8 @@
-.PHONY: all engine clean dockerbuild forcedockerbuild dockerrun run package
+.PHONY: all engine clean dockerbuild forcedockerbuild dockerrun start
+
 DIR := $(shell basename "$(shell pwd)")
 NAME = "mvp-angularjs"
-DOCKERFILE = "../../dockerfiles/mvp-angularjs/Dockerfile"
+DOCKERFILE = "./Dockerfile"
 
 engine:
 	mkdir -p src/engine
