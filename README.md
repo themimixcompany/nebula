@@ -7,13 +7,7 @@ Overview
 
 This section briefly describes the main components of the MVP. This section presents a very high level overview of the existing version of the suite.
 
-
-### Engine
-
 The engine is implemented using Common Lisp, with [SBCL](http://sbcl.org) as the primary implementation. Currently, it contains the modules websocket and build. The websocket module is responsible for opening a two-way commmunication stream between itself and the outside world. In our case it creates a socket between the engine and the Electron application. The build module is used for producing standalone executables that the Electron component will spawn.
-
-
-### Viewer
 
 The viewer is implemented using framework [Electron](https://electronjs.org/) with [Node.js](https://nodejs.org/en/) for the runtime and [Chromium](https://www.chromium.org/Home) for the rendering. The code that serves the HTML is done using [AngularJS](https://angularjs.org/). [Electron Forge](https://www.npmjs.com/package/electron-forge) and [Electron Packager](https://www.npmjs.com/package/electron-packager) were used to build the final application executables.
 
@@ -64,7 +58,7 @@ git clone https://github.com/themimixcompany/engine
 Next, build the Engine executable:
 
 ```bash
-cd mvp
+cd engine
 sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
 ```
 
@@ -123,7 +117,7 @@ git clone https://github.com/themimixcompany/engine
 Next, build the Engine executable:
 
 ```dos
-cd mvp
+cd engine
 sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
 ```
 
@@ -140,7 +134,15 @@ This section describes the procedures for building the Viewer on Linux and windo
 To build the viewer on Linux systems, you must first install Node.js. On Ubuntu, run:
 
 ```bash
+sudo apt-get update
 sudo apt-get install -y nodejs npm
+```
+
+Additionally you must install some Wine dependencies:
+
+```bash
+sudo dpkg --add-architecture i386
+sudo apt-get install -y wine mono-complete wine-development wine32-development wine64-development
 ```
 
 The minimum required versions for nodejs and npm are `8.10.0` and `3.5.2`, respectively. To check if you meet these requirements, run:
@@ -157,10 +159,9 @@ npm install
 ```
 
 When all the dependencies have been installed, check to see that the application
-can indeed run, install electron-forge globally, then run the start script:
+can indeed run with:
 
 ```bash
-npm i -g electron-forge
 npm start
 ```
 
@@ -171,6 +172,13 @@ npm run package
 ```
 
 This command creates an `out/mvp-linux-x64` subdirectory that contains the application and its local resources and dependencies.
+
+To build for Windows, run:
+
+```bash
+electron-forge make --platform=win32
+electron-forge package --platform=win32
+```
 
 
 #### Windows

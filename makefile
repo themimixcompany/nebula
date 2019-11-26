@@ -4,11 +4,11 @@ NAME = "mvp-angularjs"
 DOCKERFILE = "../../dockerfiles/mvp-angularjs/Dockerfile"
 
 engine:
-	mkdir -p engine
+	mkdir -p src/engine
 	sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
 
 clean:
-	rm -rf engine
+	rm -rf src/engine
 	rm -rf out
 
 dockerbuild:
@@ -20,11 +20,14 @@ forcedockerbuild:
 dockerrun:
 	docker run -it --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix $(NAME)
 
-run:
-	npm start
-
-package:
-	npm run package
-
 start:
 	npm start
+
+linuxpackage:
+	electron-forge package --platform=linux
+
+windowspackage:
+	electron-forge package --platform=win32
+
+macospackage:
+	electron-forge package --platform=darwin
