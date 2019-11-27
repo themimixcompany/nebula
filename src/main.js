@@ -1,14 +1,13 @@
 const {app, BrowserWindow} = require('electron');
-
 const path = require('path');
 const child = require('child_process').execFile;
 const fs = require('fs');
 const express = require('express');
 const appexpress = express();
 const port = process.env.PORT || 8000;
+const wsport = process.env.WSPORT || 9797;
 const portscanner = require('portscanner');
-
-var dirPrefix = "";
+var dirPrefix = null;
 
 function setDirPrefix () {
   if (fs.existsSync(path.resolve(__dirname, "resources/app"))) {
@@ -33,7 +32,7 @@ function getPlatformSuffix () {
   } else if (process.platform === 'darwin') {
     return "_darwin";
   } else {
-    console.log(`This platform ${process.platform} is unsupported.`);
+    console.log(`The platform ${process.platform} is unsupported.`);
   }
 }
 
@@ -42,12 +41,12 @@ function loadEngine () {
   var enginePath = `${dirPrefix}/engine/engine${platformSuffix}`;
   var engineArgs = [];
 
-  portscanner.checkPortStatus(9797, '127.0.0.1', (error, status) => {
+  portscanner.checkPortStatus(wsport, '127.0.0.1', (error, status) => {
     if (status == 'closed') {
-        child(enginePath, engineArgs, (err, data) => {
-          console.log(err);
-          console.log(data.toString());
-        });
+      child(enginePath, engineArgs, (err, data) => {
+        console.log(err);
+        console.log(data.toString());
+      });
     } else {
       console.log(`port ${port} is not available`);
     }
