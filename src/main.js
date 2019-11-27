@@ -4,14 +4,15 @@ const child = require('child_process').execFile;
 const fs = require('fs');
 const express = require('express');
 const appexpress = express();
+const host = process.env.HOST || '127.0.0.1';
 const port = process.env.PORT || 8000;
 const wsport = process.env.WSPORT || 9797;
 const portscanner = require('portscanner');
 var dirPrefix = null;
 
 function setDirPrefix () {
-  if (fs.existsSync(path.resolve(__dirname, "resources/app"))) {
-    dirPrefix = path.resolve(__dirname, "resources/app");
+  if (fs.existsSync(path.resolve(__dirname, 'resources/app'))) {
+    dirPrefix = path.resolve(__dirname, 'resources/app');
   } else {
     dirPrefix = path.resolve(__dirname);
   }
@@ -20,17 +21,17 @@ function setDirPrefix () {
 function loadExpress () {
   appexpress.use(express.static(`${dirPrefix}/app`));
   appexpress.listen(port, () => {
-    console.log('listening on %d', port);
+    console.log('Express listening on %s:%d', host, port);
   });
 }
 
 function getPlatformSuffix () {
   if (process.platform === 'linux'){
-    return "_linux";
+    return '_linux';
   } else if (process.platform === 'win32'){
-    return "_windows.exe";
+    return '_windows.exe';
   } else if (process.platform === 'darwin') {
-    return "_darwin";
+    return '_darwin';
   } else {
     console.log(`The platform ${process.platform} is unsupported.`);
   }
@@ -40,12 +41,13 @@ function loadEngine () {
   var platformSuffix = getPlatformSuffix();
   var enginePath = `${dirPrefix}/engine/engine${platformSuffix}`;
   var engineArgs = [];
+  var child_status = null;
 
-  portscanner.checkPortStatus(wsport, '127.0.0.1', (error, status) => {
+  portscanner.checkPortStatus(wsport, host, (error, status) => {
     if (status == 'closed') {
-      child(enginePath, engineArgs, (err, data) => {
-        console.log(err);
-        console.log(data.toString());
+      child_status = child(enginePath, engineArgs);
+      child_status.stdout.on('data', (data) => {
+        console.log(data);
       });
     } else {
       console.log(`port ${port} is not available`);
@@ -61,7 +63,7 @@ function createWindow () {
     height: 600
   });
 
-  mainWindow.loadURL("http://localhost:8000");
+  mainWindow.loadURL(`http://${host}:${port}`);
   // mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', () => {
