@@ -19,7 +19,7 @@ function setDirPrefix () {
 }
 
 function loadExpress () {
-  appexpress.use(express.static(`${dirPrefix}/app`));
+  appexpress.use(express.static(`${dirPrefix}/viewer`));
   appexpress.listen(port, () => {
     console.log('Express listening on %s:%d', host, port);
   });

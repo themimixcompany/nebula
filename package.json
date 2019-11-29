@@ -3,7 +3,7 @@
   "productName": "mvp",
   "version": "1.0.0",
   "description": "Mimix MVP",
-  "main": "src/main.js",
+  "main": "app/main.js",
   "scripts": {
     "start": "electron .",
     "forge-start": "electron-forge start",
