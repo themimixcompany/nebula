@@ -27,11 +27,11 @@ function loadExpress () {
 
 function getPlatformSuffix () {
   if (process.platform === 'linux'){
-    return '_linux';
+    return '_unix_X64';
   } else if (process.platform === 'win32'){
-    return '_windows.exe';
+    return '_windows_X64.exe';
   } else if (process.platform === 'darwin') {
-    return '_darwin';
+    return '_darwin_X64';
   } else {
     console.log(`The platform ${process.platform} is unsupported.`);
   }
