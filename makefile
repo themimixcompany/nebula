@@ -5,11 +5,10 @@ NAME = "mvp-angularjs"
 DOCKERFILE = "./Dockerfile"
 
 engine:
-	mkdir -p src/engine
-	sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
+	sbcl --eval '(ql:quickload :engine)' --eval '(engine:build #P"app/engine/")'
 
 clean:
-	rm -rf src/engine
+	rm -rf app/engine
 	rm -rf out
 
 dockerbuild:
