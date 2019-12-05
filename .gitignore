@@ -1,5 +1,5 @@
 node_modules/
-out/
-app/engine
-app/viewer
+/out/
+/app/engine/
+/app/viewer/
 npm-debug.log
