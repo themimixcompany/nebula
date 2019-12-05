@@ -1,4 +1,4 @@
-.PHONY: all build install_engine install_viewer create_linux_package save_image
+.PHONY: all build install_engine install_viewer save_image
 
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = mvp
@@ -7,24 +7,17 @@ DOCKERFILE = ./Dockerfile
 
 all: build save_image
 
-build: install_engine install_viewer create_linux_package
+build: install_engine install_viewer
 	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
 install_engine:
 	rm -rf app/engine
 	mkdir -p app/engine
-	cp -v ${ENGINE_RELEASES}/* app/engine
+	cp -v ${ENGINE_RELEASES}/engine_unix_X64 app/engine
 
 install_viewer:
 	rm -rf app/viewer
 	git clone ${VIEWER_SOURCES} app/viewer
-
-create_linux_package:
-ifeq ($(VAGRANT), 1)
-	ssh ${VAGRANT_HOST} "cd /home/vagrant/mvp-electron; electron-forge package --platform=linux"
-else
-	electron-forge package --platform=linux
-endif
 
 save_image:
 	mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}
