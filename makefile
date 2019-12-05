@@ -26,7 +26,7 @@ create_linux_package:
 save_image:
 	mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}
 	docker save -o ${RELEASES}/docker/$(BASE_NAME)/${TAG}/$(IMAGE_NAME).tar $(IMAGE_NAME)
-	gzip ${RELEASES}/docker/$(BASE_NAME)/${TAG}/$(IMAGE_NAME).tar
+	gzip -f ${RELEASES}/docker/$(BASE_NAME)/${TAG}/$(IMAGE_NAME).tar
 
 run:
 	docker run -it --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix $(IMAGE_NAME)
