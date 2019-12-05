@@ -14,3 +14,5 @@ ADD ./out/mvp-linux-x64 /app/mvp
 
 # Run app
 CMD [ "/app/mvp/mvp", "--no-sandbox" ]
+
+# file /app/mvp/mvp
