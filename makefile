@@ -20,8 +20,11 @@ install_viewer:
 	git clone ${VIEWER_SOURCES} app/viewer
 
 create_linux_package:
-	#electron-forge package --platform=linux
-	ssh mimix-ubuntu "cd /home/vagrant/mvp-electron; electron-forge package --platform=linux"
+ifeq ($(VAGRANT), 1)
+	ssh ${VAGRANT_HOST} "cd /home/vagrant/mvp-electron; electron-forge package --platform=linux"
+else
+	electron-forge package --platform=linux
+endif
 
 save_image:
 	mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}
