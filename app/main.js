@@ -31,7 +31,7 @@ function getPlatformSuffix () {
   } else if (process.platform === 'win32'){
     return '_windows_X64.exe';
   } else if (process.platform === 'darwin') {
-    return '_darwin_X64';
+    return '_macos_X64';
   } else {
     console.log(`The platform ${process.platform} is unsupported.`);
   }
