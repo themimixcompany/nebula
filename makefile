@@ -21,8 +21,8 @@ install_viewer:
 
 save_image:
 	mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}
-	docker save -o ${RELEASES}/docker/$(BASE_NAME)/${TAG}/$(IMAGE_NAME).tar $(IMAGE_NAME)
-	gzip -f ${RELEASES}/docker/$(BASE_NAME)/${TAG}/$(IMAGE_NAME).tar
+	docker save -o ${RELEASES}/docker/$(BASE_NAME)/${TAG}/docker-$(IMAGE_NAME).tar $(IMAGE_NAME)
+	gzip -f ${RELEASES}/docker/$(BASE_NAME)/${TAG}/docker-$(IMAGE_NAME).tar
 
 run:
 	docker run -it --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix $(IMAGE_NAME)
