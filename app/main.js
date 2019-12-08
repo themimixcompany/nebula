@@ -11,10 +11,20 @@ const portscanner = require('portscanner');
 var dirPrefix = null;
 
 function setDirPrefix () {
-  if (fs.existsSync(path.resolve(__dirname, 'resources/app'))) {
-    dirPrefix = path.resolve(__dirname, 'resources/app');
+  if (process.platform === 'linux' || process.platform === 'win32' ){
+    if (fs.existsSync(path.resolve(__dirname, 'resources/app'))) {
+      dirPrefix = path.resolve(__dirname, 'resources/app');
+    } else {
+      dirPrefix = path.resolve(__dirname);
+    }
+  } else if (process.platform === 'darwin') {
+    if (fs.existsSync(path.resolve(__dirname, '../Resources/app'))) {
+      dirPrefix = path.resolve(__dirname, '../Resources/app');
+    } else {
+      dirPrefix = path.resolve(__dirname);
+    }
   } else {
-    dirPrefix = path.resolve(__dirname);
+    console.log(`The platform ${process.platform} is unsupported.`);
   }
 }
 
