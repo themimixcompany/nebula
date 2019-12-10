@@ -1,0 +1,22 @@
+{
+  "electronPackagerConfig": {
+    "name": "mvp",
+    "dir": ".",
+    "overwrite": "true",
+    "asar": true
+  },
+  "make_targets": {
+    "linux": ["deb", "snap"],
+    "win32": ["squirrel"],
+    "darwin": ["zip", "dmg"]
+  },
+  "electronRebuildConfig": {},
+  "electronWinstallerConfig": {},
+  "electronInstallerDMG": {},
+  "electronInstallerFlatpak": {},
+  "electronInstallerDebian": {},
+  "electronInstallerRedhat": {},
+  "electronInstallerSnap": {
+    "appConfig": "base: core18"
+  }
+}
