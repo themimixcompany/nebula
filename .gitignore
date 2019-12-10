@@ -1,5 +1,7 @@
-node_modules/
+npm-debug.log
+/node_modules/
 /out/
 /app/engine/
 /app/viewer/
-npm-debug.log
+/Squirrel.exe
+/app/Squirrel.exe

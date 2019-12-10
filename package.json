@@ -1,5 +1,5 @@
 {
-  "name": "mvp-app",
+  "name": "mvp",
   "productName": "mvp",
   "version": "1.0.0",
   "description": "Mimix MVP",
@@ -14,41 +14,9 @@
   },
   "keywords": [],
   "author": "Mimix",
-  "license": "",
+  "license": "Blue Oak License 1.0.0",
   "config": {
-    "forge": {
-      "packagerConfig": {
-        "name": "mvp",
-        "dir": ".",
-        "overwrite": "true"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "linux",
-            "win32",
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {
-            "maintainer": "David Bethune",
-            "homepage": "https://mimix.io"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "mvp"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-dmg"
-        }
-      ]
-    }
+    "forge": "./forge.json"
   },
   "dependencies": {
     "electron-compile": "^6.4.4",
@@ -65,6 +33,7 @@
     "electron": "7.1.1",
     "electron-compilers": "^5.9.0",
     "electron-prebuilt-compile": "latest",
+    "electron-winstaller": "^4.0.0",
     "express": "^4.17.1"
   }
 }
