@@ -1,4 +1,9 @@
 const {app, BrowserWindow} = require('electron');
+
+// const electron = require('electron');
+// const app = require('app');
+// const BrowserWindow = require('browser-window');
+
 const path = require('path');
 const child = require('child_process').execFile;
 const fs = require('fs');
@@ -11,7 +16,7 @@ const portscanner = require('portscanner');
 var dirPrefix = null;
 
 function setDirPrefix () {
-  if (process.platform === 'linux' || process.platform === 'win32' ){
+  if (process.platform === 'linux' || process.platform === 'win32'){
     if (fs.existsSync(path.resolve(__dirname, 'resources/app'))) {
       dirPrefix = path.resolve(__dirname, 'resources/app');
     } else {

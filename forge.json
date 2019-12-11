@@ -2,21 +2,23 @@
   "electronPackagerConfig": {
     "name": "mvp",
     "dir": ".",
-    "overwrite": "true",
-    "asar": true
+    "overwrite": "true"
   },
   "make_targets": {
-    "linux": ["deb", "snap"],
-    "win32": ["squirrel"],
-    "darwin": ["zip", "dmg"]
+    "linux": ["deb"],
+    "win32": ["wix"],
+    "darwin": ["dmg"]
   },
-  "electronRebuildConfig": {},
-  "electronWinstallerConfig": {},
-  "electronInstallerDMG": {},
+  "electronInstallerSnap": {},
+  "electronWinstallerConfig": {
+    "noMsi": true,
+    "setupIcon": "./images/logo.ico"
+  },
+  "electronInstallerDMG": {
+    "overwrite": true
+  },
   "electronInstallerFlatpak": {},
   "electronInstallerDebian": {},
   "electronInstallerRedhat": {},
-  "electronInstallerSnap": {
-    "appConfig": "base: core18"
-  }
+  "electronRebuildConfig": {}
 }

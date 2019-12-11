@@ -1,7 +1,7 @@
 {
   "name": "mvp",
   "productName": "mvp",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "Mimix MVP",
   "main": "app/main.js",
   "scripts": {
@@ -19,21 +19,29 @@
     "forge": "./forge.json"
   },
   "dependencies": {
+    "app": "^0.1.0",
+    "browser-window": "^0.4.0",
     "electron-compile": "^6.4.4",
     "electron-squirrel-startup": "^1.0.0",
     "express": "^4.17.1",
     "portscanner": "^2.2.0"
   },
   "devDependencies": {
+    "app": "^0.1.0",
+    "browser-window": "^0.4.0",
     "@electron-forge/cli": "6.0.0-beta.45",
     "@electron-forge/maker-deb": "6.0.0-beta.45",
     "@electron-forge/maker-dmg": "6.0.0-beta.45",
     "@electron-forge/maker-squirrel": "6.0.0-beta.45",
+    "@electron-forge/maker-wix": "6.0.0-beta.45",
     "@electron-forge/maker-zip": "6.0.0-beta.45",
     "electron": "7.1.1",
     "electron-compilers": "^5.9.0",
+    "electron-installer-flatpak": "^0.8.0",
+    "electron-installer-snap": "^4.1.0",
     "electron-prebuilt-compile": "latest",
     "electron-winstaller": "^4.0.0",
+    "electron-wix-msi": "^2.2.0",
     "express": "^4.17.1"
   }
 }
