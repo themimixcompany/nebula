@@ -1,0 +1,25 @@
+{
+  "electronPackagerConfig": {
+    "name": "mvp",
+    "dir": ".",
+    "overwrite": "true",
+    "asar": true
+  },
+  "make_targets": {
+    "linux": ["snap"],
+    "win32": ["wix"],
+    "darwin": ["dmg"]
+  },
+  "electronInstallerSnap": {},
+  "electronWinstallerConfig": {
+    "noMsi": true,
+    "setupIcon": "./images/logo.ico"
+  },
+  "electronInstallerDMG": {
+    "overwrite": true
+  },
+  "electronInstallerFlatpak": {},
+  "electronInstallerDebian": {},
+  "electronInstallerRedhat": {},
+  "electronRebuildConfig": {}
+}
