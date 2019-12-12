@@ -32,8 +32,20 @@ clean:
 	rm -rf app/viewer
 	rm -rf out
 
-create_windows_package:
+linux_package:
+	electron-forge package --platform=linux
+
+windows_package:
 	electron-forge package --platform=win32
 
-create_macos_package:
-	electron-forge package --platform=darwin
+macos_package:
+	electron-forge package --platform=macos
+
+linux_installer:
+	electron-forge make --skip-package --platform=linux
+
+windows_installer:
+	electron-forge make --skip-package --platform=win32
+
+macos_installer:
+	electron-forge make --skip-package --platform=macos

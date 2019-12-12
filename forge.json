@@ -5,7 +5,7 @@
     "overwrite": "true"
   },
   "make_targets": {
-    "linux": ["deb"],
+    "linux": ["flatpak"],
     "win32": ["wix"],
     "darwin": ["dmg"]
   },
