@@ -1,4 +1,4 @@
-.PHONY: all build install_engine install_viewer save_image
+.PHONY: all build install_engine install_viewer save_image linux_package windows_package macos_package
 
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = mvp
@@ -49,3 +49,6 @@ windows_installer:
 
 macos_installer:
 	electron-forge make --skip-package --platform=macos
+
+appimage:
+	electron-builder --linux --project . --prepackaged out/mvp-linux-x64
