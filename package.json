@@ -16,18 +16,23 @@
     "appId": "mvp",
     "productName": "mvp",
     "linux": {
-      "target": [ "appimage" ];
+      "target": [ "appimage" ]
     },
     "win": {
-      "target": [ "nsis" ];
+      "target": [ "nsis" ]
+    },
+    "mac": {
+      "target": [ "dmg" ]
     },
     "nsis": {
-      "perMachine": true
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true
     },
     "files": [
       "!out/*",
       "!dist/*",
-      "!installers/*"
+      "!installers/*",
+      "!resources/app/installers/*"
     ]
   },
   "keywords": [],

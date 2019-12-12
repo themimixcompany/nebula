@@ -51,4 +51,10 @@ macos_installer:
 	electron-forge make --skip-package --platform=macos
 
 appimage:
-	electron-builder --linux --project . --prepackaged out/mvp-linux-x64
+	electron-builder --linux --prepackaged out/mvp-linux-x64
+
+nsis:
+	electron-builder --windows --prepackaged out/mvp-win32-x64
+
+dmg:
+	electron-builder --macos --prepackaged out/mvp-darwin-x64
