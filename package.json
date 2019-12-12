@@ -23,6 +23,7 @@
   "build": {
     "appId": "io.mimix.mvp",
     "productName": "mvp",
+    "output": "out",
     "linux": {
       "target": [ "appimage" ]
     },
@@ -31,6 +32,13 @@
     },
     "mac": {
       "target": [ "dmg" ]
+    },
+    "deb": {
+      "depends": [ "gconf2", "gconf-service", "libnotify4", "libappindicator1",
+                   "libxtst6", "libnss3", "libgtk-3-0", "libnotify4", "libnss3",
+                   "libxss1", "libxtst6", "xdg-utils", "kde-cli-tools",
+                   "kde-runtime", "trash-cli", "libglib2.0-bin", "gvfs-bin",
+                   "libasound2" ]
     },
     "nsis": {
       "oneClick": false,
@@ -45,7 +53,6 @@
   },
   "dependencies": {
     "electron-compile": "^6.4.4",
-    "electron-squirrel-startup": "^1.0.0",
     "express": "^4.17.1",
     "portscanner": "^2.2.0"
   },
