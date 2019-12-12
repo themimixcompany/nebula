@@ -34,9 +34,15 @@ function setDirPrefix () {
 }
 
 function loadExpress () {
-  appexpress.use(express.static(`${dirPrefix}/viewer`));
-  appexpress.listen(port, () => {
-    console.log('Express listening on %s:%d', host, port);
+  portscanner.checkPortStatus(port, host, (error, status) => {
+    if (status == 'closed') {
+      appexpress.use(express.static(`${dirPrefix}/viewer`));
+      appexpress.listen(port, () => {
+        console.log('Express listening on %s:%d', host, port);
+      });
+    } else {
+      console.log(`port ${port} is not available`);
+    }
   });
 }
 
