@@ -3,6 +3,11 @@
   "productName": "mvp",
   "version": "1.0.8",
   "description": "Mimix MVP",
+  "homepage": "https://mimix.io",
+  "repository": "https://github.com/themimixcompany/mvp-electron",
+  "keywords": [ "mimix" ],
+  "author": "The Mimix Company",
+  "license": "Blue Oak License 1.0.0",
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
@@ -12,8 +17,11 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
+  "config": {
+    "forge": "./forge.json"
+  },
   "build": {
-    "appId": "mvp",
+    "appId": "io.mimix.mvp",
     "productName": "mvp",
     "linux": {
       "target": [ "appimage" ]
@@ -25,21 +33,15 @@
       "target": [ "dmg" ]
     },
     "nsis": {
+      "oneClick": false,
       "perMachine": true,
       "allowToChangeInstallationDirectory": true
     },
     "files": [
       "!out/*",
-      "!dist/*",
       "!installers/*",
       "!resources/app/installers/*"
     ]
-  },
-  "keywords": [],
-  "author": "Mimix",
-  "license": "Blue Oak License 1.0.0",
-  "config": {
-    "forge": "./forge.json"
   },
   "dependencies": {
     "electron-compile": "^6.4.4",
