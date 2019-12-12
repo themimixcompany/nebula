@@ -39,7 +39,7 @@ windows_package:
 	electron-forge package --platform=win32
 
 macos_package:
-	electron-forge package --platform=macos
+	electron-forge package --platform=darwin
 
 linux_installer:
 	electron-forge make --skip-package --platform=linux
