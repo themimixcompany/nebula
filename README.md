@@ -1,11 +1,11 @@
-MVP
-===
+Nebula
+======
 
 
 Overview
 --------
 
-This section briefly describes the main components of the MVP. This section presents a very high level overview of the existing version of the suite.
+This section briefly describes the main components of Nebula. This section presents a very high level overview of the existing version of the suite.
 
 The engine is implemented using Common Lisp, with [SBCL](http://sbcl.org) as the primary implementation. Currently, it contains the modules websocket and build. The websocket module is responsible for opening a two-way commmunication stream between itself and the outside world. In our case it creates a socket between the engine and the Electron application. The build module is used for producing standalone executables that the Electron component will spawn.
 
@@ -152,7 +152,7 @@ node --version
 npm --version
 ```
 
-Inside the mvp directory, run the following command to install the required dependencise:
+Inside the nebula directory, run the following command to install the required dependencise:
 
 ```bash
 npm install
@@ -171,7 +171,7 @@ To create a bundled application, run:
 npm run package
 ```
 
-This command creates an `out/mvp-linux-x64` subdirectory that contains the application and its local resources and dependencies.
+This command creates an `out/nebula-linux-x64` subdirectory that contains the application and its local resources and dependencies.
 
 To build for Windows, run:
 
@@ -198,11 +198,11 @@ To be able to run the Linux binaries, a set of required runtime dependencies mus
 sudo apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2 libssl1.1
 ```
 
-To run the app itself, navigate to the `out/mvp-linux-x64` subdirectory mentioned in the last section, then run the `mvp` binary:
+To run the app itself, navigate to the `out/nebula-linux-x64` subdirectory mentioned in the last section, then run the `nebula` binary:
 
 ```bash
-cd out/mvp-linux-x64
-./mvp
+cd out/nebula-linux-x64
+./nebula
 ```
 
 
@@ -214,7 +214,7 @@ TODO
 Structure
 ---------
 
-This section briefly describes the directory structure of the MVP that comes with this README.
+This section briefly describes the directory structure of the NEBULA that comes with this README.
 
 
 ### Engine
@@ -247,13 +247,13 @@ To build an Electron app that uses Electron Forge, it must conform to the method
 
 Another important part is the value for the `config.forge` key. It must have values for the object `packagerConfig`—which should conform to the [electron-packager API](https://github.com/electron/electron-packager/blob/master/docs/api.md), and for the object `makers` which is a list of maker specifications for [electron-forge](https://www.electronforge.io/config/makers).
 
-The values that the MVP uses look similar to the following:
+The values that the Nebula uses look similar to the following:
 
 ```json
 "config": {
   "forge": {
     "packagerConfig": {
-      "name": "mvp",
+      "name": "nebula",
       "dir": ".",
       "overwrite": "true"
     },
@@ -276,7 +276,7 @@ The values that the MVP uses look similar to the following:
       {
         "name": "@electron-forge/maker-squirrel",
         "config": {
-          "name": "mvp"
+          "name": "nebula"
         }
       },
     ]
@@ -297,7 +297,7 @@ cd app
 ws -s index.html
 ```
 
-However, due to the fact that controlling the spawning of child processes via `package.json` is not amenable to Electron Forge, creating child processes are done instead inside `main.js` using [Express](https://expressjs.com/). The way it is used with the MVP is as such:
+However, due to the fact that controlling the spawning of child processes via `package.json` is not amenable to Electron Forge, creating child processes are done instead inside `main.js` using [Express](https://expressjs.com/). The way it is used with the NEBULA is as such:
 
 ```javascript
 const express = require('express');
