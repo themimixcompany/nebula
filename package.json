@@ -1,11 +1,12 @@
 {
-  "name": "mvp",
-  "productName": "mvp",
+  "name": "Nebula",
+  "productName": "Nebula",
   "version": "1.0.8",
-  "description": "Mimix MVP",
-  "repository": "https://github.com/themimixcompany/mvp-electron",
+  "description": "Mimix Nebula",
+  "repository": "https://github.com/themimixcompany/nebula",
   "keywords": [
-    "mimix"
+    "mimix",
+    "nebula"
   ],
   "author": "The Mimix Company",
   "license": "Blue Oak License 1.0.0",
@@ -14,8 +15,7 @@
     "start": "electron ."
   },
   "build": {
-    "appId": "io.mimix.mvp",
-    "productName": "mvp",
+    "appId": "io.mimix.nebula",
     "directories": {
       "output": "./out"
     },

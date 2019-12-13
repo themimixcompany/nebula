@@ -24,7 +24,7 @@ RUN (cd /var/lib/staging; npm install; electron-forge package --platform=linux)
 
 # Install app
 RUN mkdir -p /app
-RUN mv /var/lib/staging/out/mvp-linux-x64 /app/mvp
+RUN mv /var/lib/staging/out/nebula-linux-x64 /app/nebula
 
 # Run app
-CMD [ "/app/mvp/mvp", "--no-sandbox" ]
+CMD [ "/app/nebula/nebula", "--no-sandbox" ]
