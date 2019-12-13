@@ -11,10 +11,7 @@
   "license": "Blue Oak License 1.0.0",
   "main": "app/main.js",
   "scripts": {
-    "start": "electron .",
-  },
-  "config": {
-    "forge": "./forge.json"
+    "start": "electron ."
   },
   "build": {
     "appId": "io.mimix.mvp",
@@ -24,8 +21,7 @@
     },
     "linux": {
       "target": [
-        "appimage",
-        "deb"
+        "appimage"
       ]
     },
     "win": {
@@ -72,9 +68,10 @@
     "portscanner": "^2.2.0"
   },
   "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.45",
     "electron": "7.1.1",
     "electron-builder": "^21.2.0",
-    "@electron-forge/cli": "6.0.0-beta.45",
+    "electron-packager": "^14.1.1",
     "electron-prebuilt-compile": "4.0.0"
   }
 }

@@ -43,13 +43,13 @@ docker_run:
 packages: clean install linux_package windows_package macos_package
 
 linux_package:
-	electron-forge package --platform=linux
+	electron-packager . --platform=linux --out=out --icon=assets/icons/icon.png --prune=true
 
 windows_package:
-	electron-forge package --platform=win32
+	electron-packager . --platform=win32 --out=out --icon=assets/icons/icon.ico --prune=true
 
 macos_package:
-	electron-forge package --platform=darwin
+	electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --prune=true
 
 linux_installer:
 	electron-builder --linux --prepackaged out/mvp-linux-x64
