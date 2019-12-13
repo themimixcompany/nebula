@@ -3,19 +3,15 @@
   "productName": "mvp",
   "version": "1.0.8",
   "description": "Mimix MVP",
-  "homepage": "https://mimix.io",
   "repository": "https://github.com/themimixcompany/mvp-electron",
-  "keywords": [ "mimix" ],
+  "keywords": [
+    "mimix"
+  ],
   "author": "The Mimix Company",
   "license": "Blue Oak License 1.0.0",
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "forge-start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
   },
   "config": {
     "forge": "./forge.json"
@@ -23,33 +19,52 @@
   "build": {
     "appId": "io.mimix.mvp",
     "productName": "mvp",
-    "output": "out",
+    "directories": {
+      "output": "./out"
+    },
     "linux": {
-      "target": [ "appimage" ]
+      "target": [
+        "appimage",
+        "deb"
+      ]
     },
     "win": {
-      "target": [ "nsis" ]
+      "target": [
+        "nsis"
+      ]
     },
     "mac": {
-      "target": [ "dmg" ]
+      "target": [
+        "dmg"
+      ]
     },
     "deb": {
-      "depends": [ "gconf2", "gconf-service", "libnotify4", "libappindicator1",
-                   "libxtst6", "libnss3", "libgtk-3-0", "libnotify4", "libnss3",
-                   "libxss1", "libxtst6", "xdg-utils", "kde-cli-tools",
-                   "kde-runtime", "trash-cli", "libglib2.0-bin", "gvfs-bin",
-                   "libasound2" ]
+      "depends": [
+        "gconf2",
+        "gconf-service",
+        "libnotify4",
+        "libappindicator1",
+        "libxtst6",
+        "libnss3",
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "kde-cli-tools",
+        "kde-runtime",
+        "trash-cli",
+        "libglib2.0-bin",
+        "gvfs-bin",
+        "libasound2"
+      ]
     },
     "nsis": {
       "oneClick": false,
       "perMachine": true,
       "allowToChangeInstallationDirectory": true
-    },
-    "files": [
-      "!out/*",
-      "!installers/*",
-      "!resources/app/installers/*"
-    ]
+    }
   },
   "dependencies": {
     "electron-compile": "^6.4.4",
@@ -57,20 +72,9 @@
     "portscanner": "^2.2.0"
   },
   "devDependencies": {
-    "@electron-forge/cli": "6.0.0-beta.45",
-    "@electron-forge/maker-deb": "6.0.0-beta.45",
-    "@electron-forge/maker-dmg": "6.0.0-beta.45",
-    "@electron-forge/maker-squirrel": "6.0.0-beta.45",
-    "@electron-forge/maker-wix": "6.0.0-beta.45",
-    "@electron-forge/maker-zip": "6.0.0-beta.45",
     "electron": "7.1.1",
     "electron-builder": "^21.2.0",
-    "electron-compilers": "^5.9.0",
-    "electron-installer-flatpak": "^0.8.0",
-    "electron-installer-snap": "^4.1.0",
-    "electron-prebuilt-compile": "latest",
-    "electron-winstaller": "^4.0.0",
-    "electron-wix-msi": "^2.2.0",
-    "express": "^4.17.1"
+    "@electron-forge/cli": "6.0.0-beta.45",
+    "electron-prebuilt-compile": "4.0.0"
   }
 }

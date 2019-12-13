@@ -4,19 +4,9 @@
     "dir": ".",
     "overwrite": "true"
   },
-  "make_targets": {
-    "linux": ["deb"],
-    "win32": ["wix"],
-    "darwin": ["dmg"]
-  },
   "electronInstallerSnap": {},
-  "electronWinstallerConfig": {
-    "noMsi": true,
-    "setupIcon": "./images/logo.ico"
-  },
-  "electronInstallerDMG": {
-    "overwrite": true
-  },
+  "electronWinstallerConfig": {},
+  "electronInstallerDMG": {},
   "electronInstallerFlatpak": {},
   "electronInstallerDebian": {},
   "electronInstallerRedhat": {},
