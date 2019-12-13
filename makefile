@@ -5,14 +5,13 @@ BASE_NAME = nebula
 IMAGE_NAME = $(BASE_NAME)-${TAG}
 DOCKERFILE = ./Dockerfile
 
-all: docker_build save_image
+all: build save_image
 
 build: install_engine install_viewer
 	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
 clean:
 	rm -rf node_modules
-	rm -rf out
 
 install:
 	npm install
@@ -40,19 +39,19 @@ docker_run:
 packages: linux_package windows_package macos_package
 
 linux_package:
-	electron-packager . --platform=linux --out=out --icon=assets/icons/icon.png --prune=true
+	electron-packager . --platform=linux --out=out --icon=assets/icons/icon.png --overwrite
 
 windows_package:
-	electron-packager . --platform=win32 --out=out --icon=assets/icons/icon.ico --prune=true
+	electron-packager . --platform=win32 --out=out --icon=assets/icons/icon.ico --overwrite
 
 macos_package:
-	electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --prune=true
+	electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --overwrite
 
-linux_installer:
+linux_installers:
 	electron-builder --linux --prepackaged out/nebula-linux-x64
 
-windows_installer:
+windows_installers:
 	electron-builder --windows --prepackaged out/nebula-win32-x64
 
-macos_installer:
+macos_installers:
 	electron-builder --macos --prepackaged out/nebula-darwin-x64

@@ -1,6 +1,6 @@
 {
-  "name": "Nebula",
-  "productName": "Nebula",
+  "name": "nebula",
+  "productName": "nebula",
   "version": "1.0.8",
   "description": "Mimix Nebula",
   "repository": "https://github.com/themimixcompany/nebula",
@@ -8,7 +8,11 @@
     "mimix",
     "nebula"
   ],
-  "author": "The Mimix Company",
+  "author": {
+    "name": "Rommel MARTINEZ",
+    "email": "rom@mimix.io",
+    "url": "https://mimix.io"
+  },
   "license": "Blue Oak License 1.0.0",
   "main": "app/main.js",
   "scripts": {
@@ -36,28 +40,7 @@
       ],
       "icon": "assets/icons/icon.icns"
     },
-    "deb": {
-      "depends": [
-        "gconf2",
-        "gconf-service",
-        "libnotify4",
-        "libappindicator1",
-        "libxtst6",
-        "libnss3",
-        "libgtk-3-0",
-        "libnotify4",
-        "libnss3",
-        "libxss1",
-        "libxtst6",
-        "xdg-utils",
-        "kde-cli-tools",
-        "kde-runtime",
-        "trash-cli",
-        "libglib2.0-bin",
-        "gvfs-bin",
-        "libasound2"
-      ]
-    },
+    "deb": {},
     "nsis": {
       "oneClick": false,
       "perMachine": true,
@@ -74,6 +57,7 @@
     "electron": "7.1.1",
     "electron-builder": "^21.2.0",
     "electron-packager": "^14.1.1",
-    "electron-prebuilt-compile": "4.0.0"
+    "electron-prebuilt-compile": "4.0.0",
+    "express": "^4.17.1"
   }
 }
