@@ -2,7 +2,7 @@
   "electronPackagerConfig": {
     "name": "mvp",
     "dir": ".",
-    "overwrite": "true"
+    "overwrite": "true",
   },
   "electronInstallerSnap": {},
   "electronWinstallerConfig": {},
