@@ -55,3 +55,6 @@ windows_installers:
 
 macos_installers:
 	electron-builder --macos --prepackaged out/nebula-darwin-x64
+
+macos_sync:
+	rsync -avz --delete --delete-excluded --exclude .git --exclude node_modules --exclude out "${PWD}" "${MACOS}"

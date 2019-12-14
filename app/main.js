@@ -60,7 +60,7 @@ function loadEngine () {
         console.log(data);
       });
     } else {
-      console.log(`wport ${wport} is not available`);
+      console.log(`The WebSocket port ${wport} is not available`);
     }
   });
 }
