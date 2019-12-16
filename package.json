@@ -13,7 +13,7 @@
     "email": "rom@mimix.io",
     "url": "https://mimix.io"
   },
-  "license": "Blue Oak License 1.0.0",
+  "license": "BlueOak-1.0.0",
   "main": "app/main.js",
   "scripts": {
     "start": "electron ."
