@@ -48,13 +48,15 @@ macos_package:
 	electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --overwrite
 
 linux_installers:
-	electron-builder --linux --prepackaged out/nebula-linux-x64
+	electron-builder --linux --prepackaged out/$(BASE_NAME)-linux-x64
 
 windows_installers:
-	electron-builder --windows --prepackaged out/nebula-win32-x64
+	electron-builder --windows --prepackaged out/$(BASE_NAME)-win32-x64
 
 macos_installers:
-	electron-builder --macos --prepackaged out/nebula-darwin-x64
+	electron-builder --macos --prepackaged out/$(BASE_NAME)-darwin-x64
+	mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+	mv -f out/$(BASE_NAME)-${TAG}.dmg ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
 
 macos_sync:
 	rsync -avz --delete --delete-excluded --exclude .git --exclude node_modules --exclude out "${PWD}" "${MACOS}"
