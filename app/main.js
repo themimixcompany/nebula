@@ -5,8 +5,8 @@ const fs = require('fs');
 const express = require('express');
 const appexpress = express();
 const host = process.env.HOST || '127.0.0.1';
-const vport = process.env.VPORT || 8000;
-const wport = process.env.WPORT || 9797;
+const vport = process.env.VPORT || 50000;
+const wport = process.env.WPORT || 60000;
 const portscanner = require('portscanner');
 var dirPrefix = null;
 
