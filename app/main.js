@@ -29,7 +29,7 @@ function setDirPrefix () {
 }
 
 function loadExpress () {
-  appexpress.use(express.static(`${dirPrefix}/viewer`));
+  appexpress.use(express.static(`${dirPrefix}/world`));
   appexpress.listen(vport, () => {
     console.log('Express listening on %s:%d', host, vport);
   });
@@ -47,15 +47,15 @@ function getPlatformSuffix () {
   }
 }
 
-function loadEngine () {
+function loadStreams () {
   var platformSuffix = getPlatformSuffix();
-  var enginePath = `${dirPrefix}/engine/engine${platformSuffix}`;
-  var engineArgs = [];
+  var streamsPath = `${dirPrefix}/streams/streams${platformSuffix}`;
+  var streamsArgs = [];
   var child_status = null;
 
   portscanner.checkPortStatus(wport, host, (error, status) => {
     if (status == 'closed') {
-      child_status = child(enginePath, engineArgs);
+      child_status = child(streamsPath, streamsArgs);
       child_status.stdout.on('data', (data) => {
         console.log(data);
       });
@@ -84,7 +84,7 @@ function createWindow () {
 function runApp () {
   setDirPrefix();
   loadExpress();
-  loadEngine();
+  loadStreams();
   createWindow();
 }
 

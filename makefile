@@ -1,4 +1,4 @@
-.PHONY: all clean build install_engine install_viewer save_image linux_package windows_package macos_package
+.PHONY: all clean build install_streams install_world save_image linux_package windows_package macos_package
 
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = nebula
@@ -7,7 +7,7 @@ DOCKERFILE = ./Dockerfile
 
 all: build save_image
 
-build: install_engine install_viewer
+build: install_streams install_world
 	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
 clean:
@@ -19,14 +19,14 @@ install:
 start:
 	npm start
 
-install_engine:
-	rm -rf app/engine
-	mkdir -p app/engine
-	cp -v ${ENGINE_RELEASES}/engine_unix_X64 app/engine
+install_streams:
+	rm -rf app/streams
+	mkdir -p app/streams
+	cp -v ${STREAMS_RELEASES}/streams_unix_X64 app/streams
 
-install_viewer:
-	rm -rf app/viewer
-	git clone ${VIEWER_SOURCES} app/viewer
+install_world:
+	rm -rf app/world
+	git clone ${WORLD_SOURCES} app/world
 
 save_image:
 	mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}

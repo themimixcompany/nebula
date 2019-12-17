@@ -1,8 +1,8 @@
 npm-debug.log
 /node_modules/
 /out/
-/app/engine/
-/app/viewer/
+/app/streams/
+/app/world/
 /Squirrel.exe
 /app/Squirrel.exe
 /installers/
