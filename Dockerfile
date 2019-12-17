@@ -15,12 +15,12 @@ RUN apt-get install -y nodejs
 RUN npm config set user 0
 RUN npm config set unsafe-perm true
 RUN npm install -g electron
-RUN npm install -g electron-forge
+RUN npm install -g electron-packager
 
 # Staging
 RUN mkdir -p /var/lib/staging
 ADD . /var/lib/staging
-RUN (cd /var/lib/staging; npm install; electron-forge package --platform=linux)
+RUN (cd /var/lib/staging; npm install; electron-packager . --platform=linux --out=out --icon=assets/icons/icon.png --prune=true)
 
 # Install app
 RUN mkdir -p /app
