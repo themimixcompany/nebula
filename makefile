@@ -1,3 +1,20 @@
+#-------------------------------------------------------------------------------
+# Head
+#-------------------------------------------------------------------------------
+
+SHELL := bash
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
+
+.ONESHELL:
+.SHELLFLAGS := -eu -o pipefail -c
+.DELETE_ON_ERROR:
+
+
+#-------------------------------------------------------------------------------
+# Body
+#-------------------------------------------------------------------------------
+
 .PHONY: all clean build install_streams install_world save_image linux_package windows_package macos_package
 
 DIR := $(shell basename "$(shell pwd)")
