@@ -78,3 +78,6 @@ macos_installers:
 
 macos_sync:
   rsync -avz --delete --delete-excluded --exclude .git --exclude node_modules --exclude out "${PWD}" "${MACOS}"
+
+test:
+  sbcl --eval '(ql:quickload :streams)' --eval '(streams/core:build "~/mimix/fkd/nebula/app/streams")' && npm start
