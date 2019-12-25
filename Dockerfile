@@ -6,7 +6,7 @@ LABEL version="0.0.7"
 
 # Packages
 RUN apt-get update -y
-RUN apt-get install -y software-properties-common build-essential curl sudo git
+RUN apt-get install -y software-properties-common build-essential curl sudo git unzip
 RUN apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2 libssl1.1
 
 # Node.js
