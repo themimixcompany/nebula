@@ -28,6 +28,9 @@ all: build save_image
 build: install_streams install_world
   docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
+dockerbuild:
+  docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
+
 clean:
   rm -rf node_modules
 
