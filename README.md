@@ -7,13 +7,13 @@ Nebula
 
 - [Overview](#overview)
 - [Building the Engine](#engine)
-  + [Linux](#enginelinux)
+  + [Linux/macOS](#engineunix)
   + [Windows](#enginewindows)
 - [Building the Viewer](#viewer)
-  + [Linux](#viewerlinux)
+  + [Linux/macOS](#viewerunix)
   + [Windows](#viewerwindows)
 - [Deployment](#deployment)
-  + [Linux](#deploymentlinux)
+  + [Linux/macOS](#deploymentunix)
   + [Windows](#deploymentwindows)
 - [Notes](#notes)
   + [package.json](#packagejson)
@@ -46,12 +46,12 @@ used to build the final application executables.
 <a name="engine">Building the Engine</a>
 ----------------------------------------
 
-This section contains the instrutions for building the Engine on Linux and
+This section contains the instructions for building the Engine on Linux, macoS, and
 Windows systems. The minimum required software are [SBCL](http://sbcl.org) and
 [Git](https://git-scm.com).
 
 
-### <a name="enginelinux">Linux</a>
+### <a name="engineunix">Linux/macOS</a>
 
 On Ubuntu systems install SBCL with:
 
@@ -167,13 +167,13 @@ command was run.
 <a name="viewer">Building the Viewer</a>
 ----------------------------------------
 
-This section describes the procedures for building the Viewer on Linux and
-Windows systems.
+This section describes the procedures for building the Viewer on Linux, macOS,
+and Windows systems.
 
 
-### <a name="viewerlinux">Linux</a>
+### <a name="viewerunix">Linux/macOS</a>
 
-To build the viewer on Linux systems, you must first install Node.js. On Ubuntu,
+To build the viewer on Linux and macOS systems, you must first install Node.js. On Ubuntu,
 run:
 
 ```bash
@@ -236,9 +236,9 @@ TODO
 -----------------------------------
 
 
-### <a name="deploymentlinux">Linux</a>
+### <a name="deploymentunix">Linux/macOS</a>
 
-To be able to run the Linux binaries, a set of required runtime dependencies
+To be able to run the Linux and macOS binaries, a set of required runtime dependencies
 must first be installed. On Ubuntu, you may install them with:
 
 ```bash
