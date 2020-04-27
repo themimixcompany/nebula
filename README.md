@@ -211,22 +211,6 @@ cd out/nebula-linux-x64
 TODO
 
 
-Structure
----------
-
-This section briefly describes the directory structure of the NEBULA that comes with this README.
-
-
-### Engine
-
-The subdirectory `engine` contains a platform-specific self-contained executable of the Lisp engine. The sources for the Engine can be found on [GitHub](https://github.com/themimixcompany/engine).
-
-
-### Viewer
-
-The subdirectory `app` contains a snapshot of the AngularJS sources. The most recent version of the AngularJS source can be found on [Tresorit](https://tresor.it/p#0008104xvt3rxrmktaj72kf9/Mimix%20Dev/Source/angularjs).
-
-
 Notes
 -----
 
