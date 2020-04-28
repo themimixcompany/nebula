@@ -10,6 +10,8 @@ Nebula
   + [Linux](#viewerlinux)
   + [Windows](#viewerwindows)
   + [macOS](#viewermacos)
+  + [Testing](#viewertesting)
+  + [Executables](#viewerexecutables)
 - [Engine](#engine)
   + [Linux](#enginelinux)
   + [Windows](#enginewindows)
@@ -47,16 +49,11 @@ primary implementation.
 ---------------------------
 
 This section describes the procedures for building the viewer on Linux, Windows,
-and macOS systems.
+and macOS systems. In order to run the viewer, key dependencies such as Node.js
+must first be installed.
 
 
-### <a name="viewerdependies">Dependencies</a>
-
-In order to run the viewer, key dependencies such as Node.js must first be
-installed.
-
-
-#### <a name="viewerlinux">Linux</a>
+### <a name="viewerlinux">Linux</a>
 
 On Ubuntu systems, install Node.js and friends with:
 
@@ -78,13 +75,13 @@ sudo pacman -S nodejs npm
 ```
 
 
-#### <a name="viewerwindows">Windows</a>
+### <a name="viewerwindows">Windows</a>
 
 On Windows systems, download and run the installer from
 [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
 
-#### <a name="viewermacos">macOS</a>
+### <a name="viewermacos">macOS</a>
 
 On macOS systems, download and run the installer from
 [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
