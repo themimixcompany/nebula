@@ -27,7 +27,9 @@ Nebula
 
 Nebula is system of software deployment simplifies the packaging and
 distribution of cross-platform applications built with NodeJS, HTML, and
-WebSockets.
+WebSockets. Nebula is implemented with two components: the viewer, which
+provides the graphical interface, and the engine, which provides the backend
+services.
 
 The viewer is implemented using framework [Electron](https://electronjs.org/)
 with [Node.js](https://nodejs.org/en/) for the runtime and
