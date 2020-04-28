@@ -26,14 +26,14 @@ nebula
 <a name="overview">Overview</a>
 -------------------------------
 
-Nebula is system of software deployment simplifies the packaging and
-distribution of cross-platform applications built with NodeJS, HTML, and
+Nebula is a system of software deployment that simplifies the packaging and
+distribution of cross-platform applications built with Node.js, HTML, and
 WebSockets. Nebula is implemented with two components: the viewer, which
 provides the graphical interface, and the engine, which provides the backend
 services.
 
-The viewer is implemented using framework [Electron](https://electronjs.org/)
-with [Node.js](https://nodejs.org/en/) for the runtime and
+The viewer is implemented using the frameworks [Electron](https://electronjs.org/)
+with [Node.js](https://nodejs.org/en/) for the runtime, and
 [Chromium](https://www.chromium.org/Home) for the rendering. The code that
 serves the HTML is done using
 [AngularJS](https://angularjs.org/). [Electron Packager](https://www.npmjs.com/package/electron-packager)
@@ -111,7 +111,7 @@ npm start
 
 ### <a name="viewerexecutables">Executables</a>
 
-To create bundled applications for Linux, Windows, and macOS systems,
+To create the bundled applications for Linux, Windows, and macOS systems,
 respectively, run:
 
 ```bash
@@ -129,7 +129,7 @@ electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --
 electron-builder --macos --prepackaged out/nebula-darwin-x64
 ```
 
-The commands will create nebula executables under the respecive `out/`
+The commands will create Nebula executables under the respective `out/`
 subdirectories, which contain the application and its local resources and
 dependencies.
 
@@ -137,9 +137,9 @@ dependencies.
 <a name="engine">Engine</a>
 ---------------------------
 
-This section contains the instructions for building the engine on Linux, macoS, and
-Windows systems. The minimum required software are [SBCL](http://sbcl.org) and
-[Git](https://git-scm.com).
+This section contains the instructions for building the engine on Linux,
+Windows, and macOS systems. The minimum required software are
+[SBCL](http://sbcl.org) and [Git](https://git-scm.com).
 
 
 ### <a name="enginelinux">Linux</a>

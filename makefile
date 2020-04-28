@@ -1,7 +1,3 @@
-#-------------------------------------------------------------------------------
-# Head
-#-------------------------------------------------------------------------------
-
 SHELL := bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
@@ -10,11 +6,6 @@ MAKEFLAGS += --no-builtin-rules
 .SHELLFLAGS := -eu -o pipefail -c
 .DELETE_ON_ERROR:
 .RECIPEPREFIX +=
-
-
-#-------------------------------------------------------------------------------
-# Body
-#-------------------------------------------------------------------------------
 
 .PHONY: all clean build install_streams install_world save_image linux_package windows_package macos_package
 
@@ -43,11 +34,11 @@ start:
 install_streams:
   rm -rf app/streams
   mkdir -p app/streams
-  cp -v ${STREAMS_RELEASES}/streams_unix_X64 app/streams
+  cp -v ${ENGINE_RELEASES}/streams_unix_X64 app/streams
 
 install_world:
   rm -rf app/world
-  git clone ${WORLD_SOURCES} app/world
+  git clone ${VIEWER_SOURCES} app/world
 
 save_image:
   mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}
@@ -83,4 +74,4 @@ macos_sync:
   rsync -avz --delete --delete-excluded --exclude .git --exclude node_modules --exclude out "${PWD}" "${MACOS}"
 
 test:
-  sbcl --eval '(ql:quickload :streams)' --eval '(streams/core:build "~/mimix/fkd/nebula/app/streams")' && npm start
+  sbcl --eval '(ql:quickload :streams)' --eval '(streams:build "~/mimix/fkd/nebula/app/streams")' && npm start
