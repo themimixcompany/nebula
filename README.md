@@ -1,4 +1,4 @@
-Nebula
+nebula
 ======
 
 
@@ -21,7 +21,6 @@ Nebula
   + [Windows](#deploymentwindows)
   + [macOS](#deploymentmacos)
 - [Notes](#notes)
-  + [main.js](#mainjs)
 
 
 <a name="overview">Overview</a>
@@ -307,9 +306,6 @@ cd out/nebula-darwin-x64
 
 <a name="notes">Notes</a>
 -------------------------
-
-
-### <a name="mainjs">main.js</a>
 
 Testing the
 [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application)
