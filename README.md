@@ -1,4 +1,4 @@
-Nebula
+nebula
 ======
 
 
@@ -16,7 +16,6 @@ Nebula
   + [Linux/macOS](#deploymentunix)
   + [Windows](#deploymentwindows)
 - [Notes](#notes)
-  + [package.json](#packagejson)
   + [main.js](#mainjs)
 
 
@@ -46,7 +45,7 @@ used to build the final application executables.
 <a name="engine">Building the Engine</a>
 ----------------------------------------
 
-This section contains the instructions for building the Engine on Linux, macoS, and
+This section contains the instructions for building the engine on Linux, macoS, and
 Windows systems. The minimum required software are [SBCL](http://sbcl.org) and
 [Git](https://git-scm.com).
 
@@ -75,21 +74,21 @@ curl -O https://beta.quicklisp.org/quicklisp.lisp
 sbcl --load quicklisp.lisp --eval  '(quicklisp-quickstart:install)' --eval '(let ((ql-util::*do-not-prompt* t)) (ql:add-to-init-file) (ql:quickload :cl-launch) (sb-ext:quit))'
 ```
 
-Next, clone the sources of the Engine:
+Next, clone the sources of the engine:
 
 ```bash
 cd ~/common-lisp
-git clone https://github.com/themimixcompany/engine
+git clone https://github.com/themimixcompany/streams
 ```
 
-Next, build the Engine executable:
+Next, build the engine executable:
 
 ```bash
 cd engine
-sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
+sbcl --eval "(ql:quickload :streams)" --eval "(streams:build)"
 ```
 
-This creates an Engine executable in the subdirectory `engine/` where the
+This creates an engine executable in the subdirectory `engine/` where the
 command was run.
 
 
@@ -97,7 +96,7 @@ command was run.
 
 On Windows 7 and up, download and install
 [SBCL](http://sbcl.org/platform-table.html). The latest version of SBCL for
-Windows at the time of writing is `1.4.14`.
+Windows at the time of writing is `2.0.0`.
 
 To verify that you have succesfully install SBCL, run the following command in
 the Command Prompt:
@@ -150,17 +149,17 @@ Next we go back to the command prompt, to fetch the engine:
 
 ```dos
 cd %HOMEDIR%\common-lisp
-git clone https://github.com/themimixcompany/engine
+git clone https://github.com/themimixcompany/streams
 ```
 
-Next, build the Engine executable:
+Next, build the engine executable:
 
 ```dos
 cd engine
-sbcl --eval "(ql:quickload :engine)" --eval "(engine:build)"
+sbcl --eval "(ql:quickload :streams)" --eval "(streams:build)"
 ```
 
-This creates an Engine executable in the subdirectory `engine/` where the
+This creates an engine executable in the subdirectory `engine/` where the
 command was run.
 
 
@@ -261,71 +260,6 @@ TODO
 
 <a name="notes">Notes</a>
 -------------------------
-
-
-### <a name="packagejson">package.json</a>
-
-To build an Electron app that uses Electron Forge, it must conform to the
-methods that Electron Forge uses. The value of the key `"scripts"` must be
-invocations to `electron-forge` and not the vanilla `electron`:
-
-```json
-"scripts": {
-  "start": "electron-forge start",
-  "package": "electron-forge package",
-  "make": "electron-forge make",
-  "publish": "electron-forge publish",
-  "lint": "echo \"No linting configured\""
-}
-```
-
-Another important part is the value for the `config.forge` key. It must have
-values for the object `packagerConfig`—which should conform to the
-[electron-packager API](https://github.com/electron/electron-packager/blob/master/docs/api.md),
-and for the object `makers` which is a list of maker specifications for
-[electron-forge](https://www.electronforge.io/config/makers).
-
-The values that the Nebula uses look similar to the following:
-
-```json
-"config": {
-  "forge": {
-    "packagerConfig": {
-      "name": "nebula",
-      "dir": ".",
-      "overwrite": "true"
-    },
-    "makers": [
-      {
-        "name": "@electron-forge/maker-zip",
-        "platforms": [
-          "darwin",
-          "linux",
-          "windows"
-        ]
-      },
-      {
-        "name": "@electron-forge/maker-deb",
-        "config": {
-          "maintainer": "David Bethune",
-          "homepage": "https://mimix.io"
-        }
-      },
-      {
-        "name": "@electron-forge/maker-squirrel",
-        "config": {
-          "name": "nebula"
-        }
-      },
-    ]
-  }
-}
-```
-
-The `makers` parameter is used when running the command `npm run make`, which
-builts installer executables for each platform specified, while the
-`packagerConfig` parameters specifies parameter for building a self-contained
-directory with all the runtime dependencies.
 
 
 ### <a name="mainjs">main.js</a>
