@@ -12,6 +12,7 @@ MAKEFLAGS += --no-builtin-rules
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = nebula
 IMAGE_NAME = $(BASE_NAME)-${TAG}
+PRODUCT_NAME = Mimix Nebula
 DOCKERFILE = ./Dockerfile
 
 all: build save
@@ -55,12 +56,12 @@ macos_package:
   electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --overwrite
 
 linux_installers:
-  electron-builder --linux --prepackaged out/$(BASE_NAME)-linux-x64
+  electron-builder --linux --prepackaged "out/$(PRODUCT_NAME)-linux-x64"
 
 windows_installers:
-  electron-builder --windows --prepackaged out/$(BASE_NAME)-win32-x64
+  electron-builder --windows --prepackaged "out/$(PRODUCT_NAME)-win32-x64"
 
 macos_installers:
-  electron-builder --macos --prepackaged out/$(BASE_NAME)-darwin-x64
+  electron-builder --macos --prepackaged "out/$(PRODUCT_NAME)-darwin-x64"
   mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
   mv -f out/$(BASE_NAME)-${TAG}.dmg ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
