@@ -1,15 +1,16 @@
 FROM ubuntu:bionic
 
-# Metadata
-LABEL maintainer="Mimix"
+# Set metadata
+LABEL maintainer="The Mimix Company <code@mimix.io>"
 LABEL version="0.0.7"
+LABEL description="Dockerfile for nebula"
 
-# Packages
+# Install base packages
 RUN apt-get update -y
 RUN apt-get install -y software-properties-common build-essential curl sudo git unzip
 RUN apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2 libssl1.1
 
-# Node.js
+# Install Node.js and friends
 RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 RUN apt-get install -y nodejs
 RUN npm config set user 0
@@ -17,14 +18,14 @@ RUN npm config set unsafe-perm true
 RUN npm install -g electron
 RUN npm install -g electron-packager
 
-# Staging
+# Stage the app
 RUN mkdir -p /var/lib/staging
 ADD . /var/lib/staging
 RUN (cd /var/lib/staging; npm install; electron-packager . --platform=linux --out=out --icon=assets/icons/icon.png --prune=true)
 
-# Install app
+# Install the app
 RUN mkdir -p /app
 RUN mv /var/lib/staging/out/nebula-linux-x64 /app/nebula
 
-# Run app
+# Run the app
 CMD [ "/app/nebula/nebula", "--no-sandbox" ]
