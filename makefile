@@ -64,4 +64,4 @@ windows_installers:
 macos_installers:
   electron-builder --macos --prepackaged "out/$(PRODUCT_NAME)-darwin-x64"
   mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-  mv -f out/$(BASE_NAME)-${TAG}.dmg ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+  mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
