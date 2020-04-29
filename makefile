@@ -69,9 +69,3 @@ macos_installers:
   electron-builder --macos --prepackaged out/$(BASE_NAME)-darwin-x64
   mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
   mv -f out/$(BASE_NAME)-${TAG}.dmg ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-
-macos_sync:
-  rsync -avz --delete --delete-excluded --exclude .git --exclude node_modules --exclude out "${PWD}" "${MACOS}"
-
-test:
-  sbcl --eval '(ql:quickload :streams)' --eval '(streams:build "~/mimix/fkd/nebula/app/streams")' && npm start
