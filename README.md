@@ -166,7 +166,7 @@ Next, [Quicklisp](https://quicklisp.org) and the other dependencies must be inst
 
 ```bash
 mkdir -p ~/common-lisp
-git clone https://gitlab.common-lisp.net/asdf/asdf/ ~/common-lisp/asdf
+git clone https://github.com/fare/asdf ~/common-lisp/asdf
 git clone https://github.com/ebzzry/marie ~/common-lisp/marie
 curl -O https://beta.quicklisp.org/quicklisp.lisp
 sbcl --load quicklisp.lisp --eval  '(quicklisp-quickstart:install)' --eval '(let ((ql-util::*do-not-prompt* t)) (ql:add-to-init-file) (ql:quickload :cl-launch) (sb-ext:quit))'
