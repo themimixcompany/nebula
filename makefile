@@ -7,19 +7,16 @@ MAKEFLAGS += --no-builtin-rules
 .DELETE_ON_ERROR:
 .RECIPEPREFIX +=
 
-.PHONY: all clean build install_streams install_world save_image linux_package windows_package macos_package
+.PHONY: all clean build install_streams install_world save linux_package windows_package macos_package
 
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = nebula
 IMAGE_NAME = $(BASE_NAME)-${TAG}
 DOCKERFILE = ./Dockerfile
 
-all: build save_image
+all: build save
 
 build: install_streams install_world
-  docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
-
-dockerbuild:
   docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
 clean:
@@ -40,15 +37,13 @@ install_world:
   rm -rf app/world
   git clone ${VIEWER_SOURCES} app/world
 
-save_image:
+save:
   mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}
   docker save -o ${RELEASES}/docker/$(BASE_NAME)/${TAG}/docker-$(IMAGE_NAME).tar $(IMAGE_NAME)
   gzip -f ${RELEASES}/docker/$(BASE_NAME)/${TAG}/docker-$(IMAGE_NAME).tar
 
-docker_run:
+run:
   docker run -it --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix $(IMAGE_NAME)
-
-packages: linux_package windows_package macos_package
 
 linux_package:
   electron-packager . --platform=linux --out=out --icon=assets/icons/icon.png --overwrite
