@@ -62,9 +62,9 @@ windows_installers:
   electron-builder --windows --prepackaged "out/$(PRODUCT_NAME)-win32-x64"
 
 macos_installers: appdmg
-  cp -r ${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app nebula.app
+  cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
   appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
-  rm -rf nebula.app
+  rm -rf "$(PRODUCT_NAME).app"
   mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
 
 appdmg:
