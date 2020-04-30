@@ -63,14 +63,15 @@ linux_installers:
 windows_installers:
   electron-builder --windows --prepackaged "out/$(PRODUCT_NAME)-win32-x64"
 
-# macos_installers: appdmg
-#   cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
-#   appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
-#   rm -rf "$(PRODUCT_NAME).app"
-#   mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-
 node_appdmg:
   npm install -g appdmg
+
+# Inside the "Mimix Nebula-darwin-x64" directory is the .app directory
+
+# macos_installers:
+#   electron-builder --macos --prepackaged "out/$(PRODUCT_NAME)-darwin-x64"
+#   mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+#   mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
 
 macos_installers: node_appdmg
   cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
