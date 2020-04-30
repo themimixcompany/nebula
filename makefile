@@ -15,6 +15,9 @@ IMAGE_NAME = $(BASE_NAME)-${TAG}
 PRODUCT_NAME = Mimix Nebula
 DOCKERFILE = ./Dockerfile
 
+STREAMS_DIR = app/streams
+WORLD_DIR = app/world
+
 all: build save
 
 build: install_streams install_world
@@ -30,13 +33,13 @@ start:
   npm start
 
 install_streams:
-  rm -rf app/streams
-  mkdir -p app/streams
-  cp -v ${ENGINE_RELEASES}/streams_unix_X64 app/streams
+  rm -rf $(STREAMS_DIR)
+  mkdir -p $(STREAMS_DIR)
+  cp -v ${ENGINE_RELEASES}/streams_unix_X64 $(STREAMS_DIR)
 
 install_world:
-  rm -rf app/world
-  git clone ${VIEWER_SOURCES} app/world
+  rm -rf $(WORLD_DIR)
+  git clone ${VIEWER_SOURCES} $(WORLD_DIR)
 
 save:
   mkdir -p ${RELEASES}/docker/$(BASE_NAME)/${TAG}
