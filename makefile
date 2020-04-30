@@ -61,7 +61,17 @@ linux_installers:
 windows_installers:
   electron-builder --windows --prepackaged "out/$(PRODUCT_NAME)-win32-x64"
 
-macos_installers:
-  electron-builder --macos --prepackaged "out/$(PRODUCT_NAME)-darwin-x64"
-  mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+macos_installers: appdmg
+  #electron-builder --macos --prepackaged "out/$(PRODUCT_NAME)-darwin-x64"
+  #mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+  #mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+  hdiutil create /tmp/tmp.dmg -ov -volname "$(PRODUCT_NAME)" -fs HFS+ -srcfolder ${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app
+  hdiutil convert /tmp/tmp.dmg -format UDZO -o "out/$(PRODUCT_NAME)-${TAG}.dmg"
+  rm -f /tmp/tmp.dmg
+  cp -r ${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app nebula.app
+  appdmg appdmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
+  rm -rf nebula.app
   mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+
+appdmg:
+  npm install -g appdmg
