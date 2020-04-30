@@ -69,8 +69,8 @@ let mainWindow;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600
+    width: 1350,
+    height: 950
   });
 
   mainWindow.loadURL(`http://${host}:${vport}`);
