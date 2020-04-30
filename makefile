@@ -7,7 +7,7 @@ MAKEFLAGS += --no-builtin-rules
 .DELETE_ON_ERROR:
 .RECIPEPREFIX +=
 
-.PHONY: all clean build install_streams install_world save linux_package windows_package macos_package
+.PHONY: all clean build install_streams install_world save linux_package windows_package macos_package linux_installers windows_installers macos_installers appdmg
 
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = nebula
