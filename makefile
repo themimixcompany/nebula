@@ -15,8 +15,8 @@ IMAGE_NAME = $(BASE_NAME)-${TAG}
 PRODUCT_NAME = Mimix Nebula
 DOCKERFILE = ./Dockerfile
 
-STREAMS_DIR = app/streams
-WORLD_DIR = app/world
+STREAMS_DIR = ./app/streams
+WORLD_DIR = ./app/world
 
 all: build save
 
