@@ -69,10 +69,11 @@ windows_installers:
 #   rm -rf "$(PRODUCT_NAME).app"
 #   mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
 
-macos_installers:
-  electron-builder --macos --prepackaged "out/$(PRODUCT_NAME)-darwin-x64"
-  mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-  mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-
-appdmg:
+node_appdmg:
   npm install -g appdmg
+
+macos_installers: node_appdmg
+  cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
+  appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
+  mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+  rm -rf "$(PRODUCT_NAME).app"
