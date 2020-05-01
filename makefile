@@ -67,9 +67,10 @@ node_appdmg:
   npm install -g appdmg
 
 macos_installers: node_appdmg
-  ls -lR "${RELEASES}" "out"
   cp -r "out/$(PRODUCT_NAME)-darwin-x64/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
   appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
+  mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/app
   mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-  mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-  rm -rf out "$(PRODUCT_NAME).app"
+  mv -f "out/$(PRODUCT_NAME)-darwin-x64/$(PRODUCT_NAME).app" "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app"
+  mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" "${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers"
+  rm -rf "$(PRODUCT_NAME).app"
