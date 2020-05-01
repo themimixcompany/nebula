@@ -30,18 +30,21 @@ Nebula is a system of software deployment that simplifies the packaging and
 distribution of cross-platform applications built with Node.js, HTML, and
 WebSockets. Nebula is implemented with two components: the viewer, which
 provides the graphical interface, and the engine, which provides the backend
-services.
+services. For information on how to configure and develop the browser-based
+elements of a Nebula app such as its navigation and UI, see
+[https://mimix.io/nebula-tech/](https://mimix.io/nebula-tech/).
 
-The viewer is implemented using the frameworks [Electron](https://electronjs.org/)
-with [Node.js](https://nodejs.org/en/) for the runtime, and
+The viewer is implemented using [Electron](https://electronjs.org/) with
+[Node.js](https://nodejs.org/en/) for the runtime, and
 [Chromium](https://www.chromium.org/Home) for the rendering. The code that
 serves the HTML is done using
 [AngularJS](https://angularjs.org/). [Electron Packager](https://www.npmjs.com/package/electron-packager)
 and [Electron Builder](https://github.com/electron-userland/electron-builder/)
-are used to build the final application executables.
+are used to build the final application executables. The engine is implemented
+using Common Lisp, with [SBCL](http://sbcl.org) as the primary implementation.
 
-The engine is implemented using Common Lisp, with [SBCL](http://sbcl.org) as the
-primary implementation.
+Installers and binary packages for Linux, Windows, and macOS systems are
+available under [Releases](https://github.com/themimixcompany/nebula/releases).
 
 
 <a name="viewer">Viewer</a>
@@ -273,34 +276,35 @@ sudo apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2 libssl
 ```
 
 To run the app, navigate to the `out/nebula-linux-x64` subdirectory
-mentioned in the last section, then run the `nebula` binary:
+mentioned in the last section, then run the `Mimix Nebula` binary:
 
 ```bash
 cd out/nebula-linux-x64
-./nebula
+./Mimix\ Nebula
 ```
 
 
 ### <a name="deploymentwindows">Windows</a>
 
 To run the app, navigate to the `out/nebula-win32-x64` subdirectory mentioned in
-the last section, then run the `nebula` binary either by double-clicking
-`nebula.exe` or by navigating in the command line with:
+the last section, then run the `Mimix Nebula` binary either by double-clicking
+`Mimix Nebula.exe` or by navigating in the command line with:
 
 ```bash
 cd out/nebula-win32-x64
-nebula
+Mimix Nebula
 ```
 
 
 ### <a name="deploymentmacos">macOS</a>
 
-To run the app, navigate to the `out/nebula-darwin-x64` subdirectory
-mentioned in the last section, then run the `nebula` binary:
+To run the app, navigate to the `out/nebula-darwin-x64` subdirectory mentioned
+in the last section, then run the `Mimix Nebula` binary either by
+double-clicking `Mimix Nebula.app` or by navigating in the command line with:
 
 ```bash
 cd out/nebula-darwin-x64
-./nebula
+open Mimix\ Nebula.app
 ```
 
 
