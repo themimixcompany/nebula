@@ -67,9 +67,12 @@ node_appdmg:
   npm install -g appdmg
 
 macos_installers: node_appdmg
-  cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
-  appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
-  mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-  mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
-  rm -rf out
-  rm -rf "$(PRODUCT_NAME).app"
+  ls -R "${RELEASES}/"
+  #cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME)-${TAG}.app" "$(PRODUCT_NAME).app"
+
+  #cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
+  #appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
+  #mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+  #mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+  #rm -rf out
+  #rm -rf "$(PRODUCT_NAME).app"
