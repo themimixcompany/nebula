@@ -27,6 +27,7 @@
       "target": [
         "appimage"
       ],
+      "executableName": "Mimix Nebula",
       "category": "Utility"
     },
     "win": {
