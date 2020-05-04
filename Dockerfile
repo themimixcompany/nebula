@@ -28,4 +28,4 @@ RUN mkdir -p /app
 RUN mv /var/lib/staging/out/"Mimix Nebula"-linux-x64 /app/nebula
 
 # Run the app
-CMD [ "/app/nebula/nebula", "--no-sandbox" ]
+CMD [ "/app/nebula/Mimix Nebula", "--no-sandbox" ]
