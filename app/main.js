@@ -1,6 +1,6 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
-const child = require('child_process').execFile;
+const child_process = require('child_process');
 const fs = require('fs');
 const express = require('express');
 const appexpress = express();
@@ -8,7 +8,9 @@ const host = process.env.HOST || '127.0.0.1';
 const vport = process.env.VPORT || 50000;
 const wport = process.env.WPORT || 60000;
 const portscanner = require('portscanner');
+
 var dirPrefix = null;
+var child_proc = null;
 
 function setDirPrefix () {
   if (process.platform === 'linux' || process.platform === 'win32'){
@@ -51,18 +53,21 @@ function loadStreams () {
   var platformSuffix = getPlatformSuffix();
   var streamsPath = `${dirPrefix}/streams/streams${platformSuffix}`;
   var streamsArgs = [];
-  var child_status = null;
 
   portscanner.checkPortStatus(wport, host, (error, status) => {
     if (status == 'closed') {
-      child_status = child(streamsPath, streamsArgs);
-      child_status.stdout.on('data', (data) => {
+      child_proc = child_process.execFile(streamsPath, streamsArgs);
+      child_proc.stdout.on('data', (data) => {
         console.log(data);
       });
     } else {
       console.log(`The WebSocket port ${wport} is not available`);
     }
   });
+}
+
+function stopStreams () {
+  child_proc.kill("SIGTERM");
 }
 
 let mainWindow;
@@ -77,6 +82,7 @@ function createWindow () {
   // mainWindow.webContents.openDevTools()
 
   mainWindow.on('closed', () => {
+    stopStreams();
     mainWindow = null;
   });
 }
