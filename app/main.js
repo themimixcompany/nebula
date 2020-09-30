@@ -74,10 +74,11 @@ let mainWindow;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 1350,
-    height: 950
+    width: 1800,
+    height: 900
   });
 
+  mainWindow.setMenuBarVisibility(false);
   mainWindow.loadURL(`http://${host}:${vport}`);
   // mainWindow.webContents.openDevTools()
 
