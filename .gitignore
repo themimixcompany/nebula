@@ -9,3 +9,4 @@ npm-debug.log
 /images/
 /dist/
 .npmrc
+package-lock.json

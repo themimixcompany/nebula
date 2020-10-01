@@ -23,6 +23,7 @@ build: install_streams install_world
   docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
 clean:
+  rm -rf out
   rm -rf node_modules
 
 install:
@@ -67,10 +68,11 @@ node_appdmg:
   npm install -g appdmg
 
 macos_installers: node_appdmg
-  mkdir -p "${RELEASES}/macos/$(BASE_NAME)/${TAG}"
+  rm -rf "${RELEASES}/macos/$(BASE_NAME)/${TAG}"
+  mkdir -p "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app"
   mv -f "out/$(PRODUCT_NAME)-darwin-x64" "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app"
-  cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" "$(PRODUCT_NAME).app"
+  cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME)-darwin-x64.app" "$(PRODUCT_NAME).app"
   appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
-  mkdir -p ${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers
+  mkdir -p "${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers"
   mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" "${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers"
   rm -rf "$(PRODUCT_NAME).app"
