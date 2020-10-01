@@ -7,7 +7,7 @@ MAKEFLAGS += --no-builtin-rules
 .DELETE_ON_ERROR:
 .RECIPEPREFIX +=
 
-.PHONY: all clean build install_streams install_world save linux_package windows_package macos_package linux_installers windows_installers macos_installers appdmg
+.PHONY: all clean build install_streams install_world save linux_package linux_installers windows_package windows_installers macos_package macos_installers node_appdmg
 
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = nebula
@@ -52,14 +52,11 @@ run:
 linux_package:
   electron-packager . --platform=linux --out=out --icon=assets/icons/icon.png --overwrite
 
-windows_package:
-  electron-packager . --platform=win32 --out=out --icon=assets/icons/icon.ico --overwrite
-
-macos_package:
-  electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --overwrite
-
 linux_installers:
   electron-builder --linux --prepackaged "out/$(PRODUCT_NAME)-linux-x64"
+
+windows_package:
+  electron-packager . --platform=win32 --out=out --icon=assets/icons/icon.ico --overwrite
 
 windows_installers:
   electron-builder --windows --prepackaged "out/$(PRODUCT_NAME)-win32-x64"
@@ -67,12 +64,15 @@ windows_installers:
 node_appdmg:
   npm install -g appdmg
 
-macos_installers: node_appdmg
+macos_package:
+  electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --overwrite
+
+macos_installers: macos_package node_appdmg
   rm -rf "${RELEASES}/macos/$(BASE_NAME)/${TAG}"
   mkdir -p "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app"
-  mv -f "out/$(PRODUCT_NAME)-darwin-x64" "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app"
-  cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME)-darwin-x64.app" "$(PRODUCT_NAME).app"
-  appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
   mkdir -p "${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers"
+  mv -f "out/$(PRODUCT_NAME)-darwin-x64/$(PRODUCT_NAME).app" "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app"
+  cp -r "${RELEASES}/macos/$(BASE_NAME)/${TAG}/app/$(PRODUCT_NAME).app" .
+  appdmg nebula-dmg.json "out/$(PRODUCT_NAME)-${TAG}.dmg"
   mv -f "out/$(PRODUCT_NAME)-${TAG}.dmg" "${RELEASES}/macos/$(BASE_NAME)/${TAG}/installers"
   rm -rf "$(PRODUCT_NAME).app"
