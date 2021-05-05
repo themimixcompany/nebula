@@ -7,7 +7,7 @@ MAKEFLAGS += --no-builtin-rules
 .DELETE_ON_ERROR:
 .RECIPEPREFIX +=
 
-.PHONY: all clean build install_streams install_world save linux_package linux_installers windows_package windows_installers macos_package macos_installers node_appdmg
+.PHONY: all clean build install_streams install_world save linux_package linux_installers windows_package windows_installers macos_package macos_installers node_appdmg macos_install_streams
 
 DIR := $(shell basename "$(shell pwd)")
 BASE_NAME = nebula
@@ -64,7 +64,12 @@ windows_installers:
 node_appdmg:
   npm install -g appdmg
 
-macos_package:
+macos_install_streams:
+  rm -rf $(STREAMS_DIR)
+  mkdir -p $(STREAMS_DIR)
+  cp -v ${RELEASES}/streams_macos_X64 $(STREAMS_DIR)
+
+macos_package: macos_install_streams
   electron-packager . --platform=darwin --out=out --icon=assets/icons/icon.icns --overwrite
 
 macos_installers: macos_package node_appdmg

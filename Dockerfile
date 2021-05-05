@@ -2,13 +2,14 @@ FROM ubuntu:bionic
 
 # Set metadata
 LABEL maintainer="The Mimix Company <code@mimix.io>"
-LABEL version="0.0.7"
+LABEL version="0.0.8"
 LABEL description="Dockerfile for Nebula"
 
 # Install base packages
 RUN apt-get update -y
 RUN apt-get install -y software-properties-common build-essential curl sudo git unzip
 RUN apt-get install -y libx11-xcb1 libgtk-3-0 libnss3 libxss1 libasound2 libssl1.1
+RUN apt-get install -y libxcb-dri3-0 libdrm2 libgbm1
 
 # Install Node.js and friends
 RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
